@@ -1,0 +1,32 @@
+Especificação dos Microprocessadores – Turma 2016/2
+
+Gerado randomicamente em 2016-10-07
+REGRAS
+
+    A equipe poderá escolher uma especificação completa de um dos integrantes; não pode misturar
+    coisas da espec. de um aluno com a do outro.
+    Restrição para codificação: a instrução 0 deverá ser NOP (não faz nada).
+    A ULA será de 16 bits
+    O Banco de Registradores possui 8 registradores de 16 bits; usar o reg. 0 como constante é opcional
+    Os operandos das instruções não possuem 16 bits; portanto vocês não vão conseguir carregar diretamente um valor como 0xFFFF no registrador. Não tem problema.
+    Não é necessário gerar os mesmos opcodes do processador original, mas é exigido que as instruções a implementar existam nele.
+    Por exemplo: no 8051, uma soma com constante é feita com ADD A,#cte, sendo A um registrador especial (o acumulador). Pode-se somar com um registrador com ADD A,Ri, sendo i de 0 a 7. Então você pode implementar uma ou ambas as instruções, mas não pode fazer ADD R3,R4, porque esta não existe.
+
+TAREFA
+
+Estudar o assembly do processador escolhido e determinar:
+
+    Estrutura e nome dos registradores
+    Instruções originais do processador a implementar para operações de:
+        Carga de constante;
+        Cópia de valor entre registradores
+        Soma de dois valores
+        Subtração de dois valores
+        Desvio incondicional
+
+
+
+ALUNO: Tomas Abril
+bits_ROM: 18
+ISA: Freescale S08 [68HC11] (ex.: MC9S08AW60)
+
