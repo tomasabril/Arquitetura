@@ -42,6 +42,5 @@ architecture a_ula of ula is
 		igual <= '1' when entrada0 = entrada1 and selecao = "110" else
 			'0';
 
-	end
-architecture;
+end architecture;
 
