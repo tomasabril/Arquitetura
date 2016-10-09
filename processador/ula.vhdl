@@ -4,7 +4,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity ula is 
+entity ula is
 	port
 		(
 			entrada0 : in unsigned(15 downto 0);
@@ -27,10 +27,10 @@ end entity;
 
 architecture a_ula of ula is
 	begin
-		saida <= entrada0 + entrada1 when selecao= "000" else
-			entrada0-entrada1 when  selecao= "001" else
-			entrada0*entrada1 when  selecao= "010" else
-			entrada0/entrada1 when  selecao= "011" else
+		saida <= entrada0 + entrada1 when selecao = "000" else
+			entrada0-entrada1 when selecao = "001" else
+			entrada0*entrada1 when selecao = "010" else
+			entrada0/entrada1 when selecao = "011" else
 			"0000000000000000";
 
 		maior <= '1' when entrada0 > entrada1 and selecao = "100" else
@@ -44,5 +44,4 @@ architecture a_ula of ula is
 
 	end
 architecture;
-
 
