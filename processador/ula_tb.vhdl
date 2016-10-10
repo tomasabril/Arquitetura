@@ -36,7 +36,7 @@ architecture a_ula_tb of ula_tb is
 		utt: ula port map(
 							entrada0 => entrada0,
 							entrada1 => entrada1,
-							selecao => selecao
+							selecao => selecao,
 							saida => saida,
 							maior => maior,
 							igual => igual,
@@ -55,16 +55,17 @@ architecture a_ula_tb of ula_tb is
 			selecao <= "001";	--subtracao 
 			wait for 50 ns;
 			entrada0 <= "0000000000001101";--15
-			entrada1 <= "0000000001010100";--84
+			--entrada1 <= "0000000001010100";--84
+			entrada1 <= "0000000000000001";--1
 			selecao <= "001";	--subtracao com resultado negativo
 			wait for 50 ns;
-			entrada0 <= "0000000001010100";--84
+			entrada0 <= "0000000000000100";--4
 			entrada1 <= "0000000000001101";--15
 			selecao <= "010";	--multiplicacao
 			wait for 50 ns;
 			entrada0 <= "0000000001010100";--84
 			entrada1 <= "0000000000001101";--15
-			selecao <= "01";	--divisao
+			selecao <= "011";	--divisao
 			wait for 50 ns;
 			entrada0 <= "0000000001010100";--84
 			entrada1 <= "0000000000001101";--15
@@ -112,7 +113,7 @@ architecture a_ula_tb of ula_tb is
 			wait for 50 ns;
 			entrada0 <= "0111111110000101";--32645
 			entrada1 <= "0000000000000010";--2
-			selecao <= "01";	--divisao
+			selecao <= "011";	--divisao
 			wait for 50 ns;
 			entrada0 <= "0111111110000101";--32645
 			entrada1 <= "0000000000000010";--2

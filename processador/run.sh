@@ -18,7 +18,7 @@ echo "gerando graficos... "
 ghdl -a ${nome}_tb.vhdl
 ghdl -e ${nome}_tb
 
-ghdl -r ${nome}_tb —stop-time=${tempo}ns —wave=${nome}_tb.ghw
+ghdl -r ${nome}_tb --stop-time=${tempo}ns --wave=${nome}_tb.ghw
 
 echo "terminado "
 
