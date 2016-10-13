@@ -42,7 +42,7 @@ architecture a_banco_reg16b_tb of banco_reg16b_tb is
 
 		process
 		begin
-			clk <='0';		--clock fica em loop pra sempre
+			clk <= '0';		--clock fica em loop pra sempre
 			wait for 50 ns;
 			clk <= '1';
 			wait for 50 ns;
@@ -53,6 +53,7 @@ architecture a_banco_reg16b_tb of banco_reg16b_tb is
 			rst <= '1';		--reseta no inicio
 			wait for 100 ns;
 			rst <= '0';
+			wait for 100 ns;
 			wait;
 		end process;
 
@@ -108,6 +109,7 @@ architecture a_banco_reg16b_tb of banco_reg16b_tb is
 			read_reg1 <= "001";
 			wait for 100 ns;
 
+			wait;
 
 		end process;
 
