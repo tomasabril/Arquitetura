@@ -48,17 +48,14 @@ architecture a_banco_reg16b_tb of banco_reg16b_tb is
 			wait for 50 ns;
 		end process;
 
+
 		process
 		begin
 			rst <= '1';		--reseta no inicio
 			wait for 100 ns;
 			rst <= '0';
 			wait for 100 ns;
-			wait;
-		end process;
-
-		process
-		begin
+			
 			read_reg1 <= "001";	--le registradores, mas naoé pra ter nada por enquanto
 			read_reg2 <= "010";
 			wait for 100 ns;
