@@ -4,7 +4,7 @@
 #set -x #echo on
 
 #arquivo a ser compilado e testado
-nome=registrador16b
+nome=banco_reg16b
 #ula
 #registrador16b
 
@@ -14,6 +14,7 @@ tempo=30000
 #deixa echo colorido
 tput setaf 3
 
+clear
 echo "apagando arquivos antigos... "
 tput sgr0
 

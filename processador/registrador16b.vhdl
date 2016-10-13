@@ -29,5 +29,6 @@ begin
 		end if;
 	end process;
 
-	data_out <= registro;			--escreve o valor guardado na saida
+	data_out <= registro;		--escreve o valor guardado na saida
 end architecture;
+
