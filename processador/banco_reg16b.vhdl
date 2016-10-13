@@ -35,7 +35,7 @@ architecture a_banco_reg16b of banco_reg16b is
 		wr_en_interno4, wr_en_interno5, wr_en_interno6, wr_en_interno7,
 		wr_en_interno8 : std_logic;
 	signal data_out0fake, data_out0, data_out1, data_out2, data_out3, data_out4,
-	data_out5, data_out6, data_out7, data_out8 : std_logic;
+	data_out5, data_out6, data_out7, data_out8 : unsigned (15 downto 0);
 
 
 	begin
@@ -194,24 +194,50 @@ architecture a_banco_reg16b of banco_reg16b is
 	begin
 	--selecao de quais registradores vao pra saida do banco
 		if rising_edge(clk) then
-			read_data1 <=	data_out0 when read_reg_1 = "000" else
-					data_out1 when read_reg_1 = "001" else
-					data_out2 when read_reg_1 = "010" else
-					data_out3 when read_reg_1 = "011" else
-					data_out4 when read_reg_1 = "100" else
-					data_out5 when read_reg_1 = "101" else
-					data_out6 when read_reg_1 = "110" else
-					data_out7 when read_reg_1 = "111"
-					else "0000000000000000";
-			read_data2 <=	data_out0 when read_reg_2 = "000" else
-					data_out1 when read_reg_2 = "001" else
-					data_out2 when read_reg_2 = "010" else
-					data_out3 when read_reg_2 = "011" else
-					data_out4 when read_reg_2 = "100" else
-					data_out5 when read_reg_2 = "101" else
-					data_out6 when read_reg_2 = "110" else
-					data_out7 when read_reg_2 = "111"
-					else "0000000000000000";
+			case read_reg1 is
+				when "000" => read_data1 <= data_out0;
+				when "001" => read_data1 <= data_out1;
+				when "010" => read_data1 <= data_out2;
+				when "011" => read_data1 <= data_out3;
+				when "100" => read_data1 <= data_out4;
+				when "101" => read_data1 <= data_out5;
+				when "110" => read_data1 <= data_out6;
+				when "111" => read_data1 <= data_out7;
+				when others => read_data1 <= "0000000000000000";
+			end case;
+			case read_reg2 is
+				when "000" => read_data2 <= data_out0;
+				when "001" => read_data2 <= data_out1;
+				when "010" => read_data2 <= data_out2;
+				when "011" => read_data2 <= data_out3;
+				when "100" => read_data2 <= data_out4;
+				when "101" => read_data2 <= data_out5;
+				when "110" => read_data2 <= data_out6;
+				when "111" => read_data2 <= data_out7;
+				when others => read_data2 <= "0000000000000000";
+			end case;
+
+		--------------
+--			read_data1 <=	data_out0 when read_reg_1 = "000" else
+--					data_out1 when read_reg_1 = "001" else
+--					data_out2 when read_reg_1 = "010" else
+--					data_out3 when read_reg_1 = "011" else
+--					data_out4 when read_reg_1 = "100" else
+--					data_out5 when read_reg_1 = "101" else
+--					data_out6 when read_reg_1 = "110" else
+--					data_out7 when read_reg_1 = "111"
+--					else "0000000000000000";
+--			read_data2 <=	data_out0 when read_reg_2 = "000" else
+--					data_out1 when read_reg_2 = "001" else
+--					data_out2 when read_reg_2 = "010" else
+--					data_out3 when read_reg_2 = "011" else
+--					data_out4 when read_reg_2 = "100" else
+--					data_out5 when read_reg_2 = "101" else
+--					data_out6 when read_reg_2 = "110" else
+--					data_out7 when read_reg_2 = "111"
+--					else "0000000000000000";
+		--------------
+
 		end if;
 	end process;
 
