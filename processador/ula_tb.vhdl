@@ -77,19 +77,19 @@ architecture a_ula_tb of ula_tb is
 			wait for 50 ns;
 			entrada0 <= "0000000001010100";--84
 			entrada1 <= "0000000000001101";--15
-			selecao <= "100";	--zero
+			selecao <= "101";	--zero
 			wait for 50 ns;
 			entrada0 <= "0000000000000000";--84
 			entrada1 <= "0000000000001101";--15
-			selecao <= "100";	--zero
+			selecao <= "101";	--zero
 			wait for 50 ns;
 			entrada0 <= "0000000001010100";--84
 			entrada1 <= "0000000000001101";--15
-			selecao <= "100";	--igual
+			selecao <= "110";	--igual
 			wait for 50 ns;
 			entrada0 <= "0000000000001101";--15
 			entrada1 <= "0000000000001101";--15
-			selecao <= "100";	--igual
+			selecao <= "110";	--igual
 			wait for 50 ns;
 
 
@@ -125,19 +125,19 @@ architecture a_ula_tb of ula_tb is
 			wait for 50 ns;
 			entrada0 <= "0111111110000101";--32645
 			entrada1 <= "0000000000000000";--0
-			selecao <= "100";	--zero
+			selecao <= "101";	--zero
 			wait for 50 ns;
 			entrada0 <= "0000000000000000";--0
 			entrada1 <= "0000000000000001";--1
-			selecao <= "100";	--zero
+			selecao <= "101";	--zero
 			wait for 50 ns;
 			entrada0 <= "0111111110000101";--32645
 			entrada1 <= "0000000000001101";--15
-			selecao <= "100";	--igual
+			selecao <= "110";	--igual
 			wait for 50 ns;
 			entrada0 <= "0111111110000101";--32645
 			entrada1 <= "0111111110000101";--32645
-			selecao <= "100";	--igual
+			selecao <= "110";	--igual
 			wait for 50 ns;
 
 

@@ -8,6 +8,15 @@ nome=ula
 #criar grafico com $tempo nano segundos
 tempo=30000
 
+echo "apagando arquivos antigos... "
+
+rm ${nome}
+rm ${nome}.o
+rm ${nome}_tb
+rm e~${nome}.o
+rm ${nome}_tb.ghw
+rm *.cf
+
 echo "compilando... ${nome} "
 
 ghdl -a ${nome}.vhdl
