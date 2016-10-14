@@ -107,7 +107,7 @@ architecture a_banco_reg16b of banco_reg16b is
 		end if;
 	end process;
 
-	process(clk)	-- acionado se houver mudança
+	process(clk, wr_en)	-- acionado se houver mudança
 	begin
 		-- Seleção de qual registrador escrever
 		if (wr_en = '1') then
@@ -187,7 +187,16 @@ architecture a_banco_reg16b of banco_reg16b is
 							wr_en_interno7 <= '0';
 				end case;
 			end if;
-		end if;	
+		else (wr_en = '0') then
+			wr_en_interno0 <= '0';
+			wr_en_interno1 <= '0';
+			wr_en_interno2 <= '0';
+			wr_en_interno3 <= '0';
+			wr_en_interno4 <= '0';
+			wr_en_interno5 <= '0';
+			wr_en_interno6 <= '0';
+			wr_en_interno7 <= '0';
+		end if;
 	end process;
 
 	process(clk) -- acionado se houver mudança
