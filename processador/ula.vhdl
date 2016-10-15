@@ -27,20 +27,22 @@ end entity;
 
 architecture a_ula of ula is
 	begin
-		saida <= entrada0 + entrada1 when selecao = "000" else
+		saida <=
+			entrada0 + entrada1 when selecao = "000" else
 			entrada0-entrada1 when selecao = "001" else
 			--(entrada0 * entrada1) when selecao = "010" else
-			entrada0/entrada1 when selecao = "011" else
-			"0000000000000000";
+			--multiplicacao da um problemao, retorna 32 bits em vez de 16
+			entrada0/entrada1 when selecao = "011"
+			else "0000000000000000";
 
-		maior <= '1' when entrada0 > entrada1 and selecao = "100" else
-			'0';
+		maior <= '1' when entrada0 > entrada1 and selecao = "100"
+			else '0';
 
-		zero <= '1' when entrada0 = 0 and selecao = "101" else
-			'0';
+		zero <= '1' when entrada0 = 0 and selecao = "101"
+			else '0';
 
-		igual <= '1' when entrada0 = entrada1 and selecao = "110" else
-			'0';
+		igual <= '1' when entrada0 = entrada1 and selecao = "110"
+			else '0';
 
 end architecture;
 
