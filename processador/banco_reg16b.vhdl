@@ -35,7 +35,7 @@ architecture a_banco_reg16b of banco_reg16b is
 		wr_en_interno4, wr_en_interno5, wr_en_interno6, wr_en_interno7,
 		wr_en_interno8 : std_logic;
 	signal data_out0fake, data_out0, data_out1, data_out2, data_out3, data_out4,
-	data_out5, data_out6, data_out7, data_out8 : unsigned (15 downto 0);
+	data_out5, data_out6, data_out7 : unsigned (15 downto 0);
 
 
 	begin
