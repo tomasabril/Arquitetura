@@ -123,26 +123,26 @@ architecture a_banco_reg16b of banco_reg16b is
 
 		--coloca valor do registrador na saida 1 com base no seletor read_reg1
 		read_data1 <=
-					data_out0 when read_reg1 = "000" else
-					data_out1 when read_reg1 = "001" else
-					data_out2 when read_reg1 = "010" else
-					data_out3 when read_reg1 = "011" else
-					data_out4 when read_reg1 = "100" else
-					data_out5 when read_reg1 = "101" else
-					data_out6 when read_reg1 = "110" else
-					data_out7 when read_reg1 = "111"
-					else "0000000000000000";
+				data_out0 when read_reg1 = "000" else
+				data_out1 when read_reg1 = "001" else
+				data_out2 when read_reg1 = "010" else
+				data_out3 when read_reg1 = "011" else
+				data_out4 when read_reg1 = "100" else
+				data_out5 when read_reg1 = "101" else
+				data_out6 when read_reg1 = "110" else
+				data_out7 when read_reg1 = "111"
+				else "0000000000000000";
 		--coloca valor do registrador na saida 2 com base no seletor read_reg2
 		read_data2 <=
-					data_out0 when read_reg1 = "000" else
-					data_out1 when read_reg1 = "001" else
-					data_out2 when read_reg1 = "010" else
-					data_out3 when read_reg1 = "011" else
-					data_out4 when read_reg1 = "100" else
-					data_out5 when read_reg1 = "101" else
-					data_out6 when read_reg1 = "110" else
-					data_out7 when read_reg1 = "111"
-					else "0000000000000000";
+				data_out0 when read_reg1 = "000" else
+				data_out1 when read_reg1 = "001" else
+				data_out2 when read_reg1 = "010" else
+				data_out3 when read_reg1 = "011" else
+				data_out4 when read_reg1 = "100" else
+				data_out5 when read_reg1 = "101" else
+				data_out6 when read_reg1 = "110" else
+				data_out7 when read_reg1 = "111"
+				else "0000000000000000";
 
 end architecture;
 

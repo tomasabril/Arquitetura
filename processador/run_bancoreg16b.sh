@@ -3,63 +3,41 @@
 #faz os comandos que estao sendo executados aparecerem
 #set -x #echo on
 
-
 clear
 
-a=0
-until [ ! $a -lt 2 ]
-do
+tput setaf 3
+echo "apagando arquivos antigos... "
+tput sgr0
 
-	#arquivo a ser compilado e testado
-	
-	if [ "$a" == 0 ]; then
-		nome=registrador16b
-	else
-		nome=banco_reg16b
-	fi
-	
-	#ula
-	#registrador16b
+rm registrador16b
+rm registrador16b.o
+rm registrador16b
+rm e~registrador16b.o
+rm registrador16b.ghw
+rm banco_reg16b
+rm banco_reg16b.o
+rm banco_reg16b
+rm e~banco_reg16b.o
+rm banco_reg16b.ghw
+rm *.cf
 
-	#criar grafico com $tempo nano segundos
-	tempo=30000
+tput setaf 3
+echo "compilando... ${nome} "
+tput sgr0
 
-	#deixa echo colorido
-	tput setaf 3
+ghdl -a registrador16b.vhdl
+ghdl -e registrador16b
+ghdl -a banco_reg16b.vhdl
+ghdl -e banco_reg16b
 
-	echo "apagando arquivos antigos... "
-	tput sgr0
+tput setaf 3
+echo "gerando graficos... "
+tput sgr0
 
-	rm ${nome}
-	rm ${nome}.o
-	rm ${nome}_tb
-	rm e~${nome}.o
-	rm ${nome}_tb.ghw
-	rm *.cf
+ghdl -a banco_reg16b_tb.vhdl
+ghdl -e banco_reg16b_tb
+ghdl -r banco_reg16b_tb --stop-time=30000ns --wave=banco_reg16b_tb.ghw
 
-	tput setaf 3
-	echo "compilando... ${nome} "
-	tput sgr0
-
-	ghdl -a ${nome}.vhdl
-	ghdl -e ${nome}
-
-	tput setaf 3
-	echo "gerando graficos... "
-	tput sgr0
-
-	ghdl -a ${nome}_tb.vhdl
-	ghdl -e ${nome}_tb
-
-	ghdl -r ${nome}_tb --stop-time=${tempo}ns --wave=${nome}_tb.ghw
-
-	tput setaf 3
-	echo "terminado "
-	tput sgr0
-
-	a=`expr $a + 1`
-done
-
-gtkwave ${nome}_tb.ghw
+gtkwave banco_reg16b_tb.ghw
 
 
