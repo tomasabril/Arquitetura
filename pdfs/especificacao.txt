@@ -30,3 +30,8 @@ ALUNO: Tomas Abril
 bits_ROM: 18
 ISA: Freescale S08 [68HC11] (ex.: MC9S08AW60)
 
+
+ALUNO: Gustavo Ramos Pereira
+bits_ROM: 17
+ISA: MSP430 [MSP] (ex.: M430G2553)
+
