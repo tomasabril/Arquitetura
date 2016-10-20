@@ -1,0 +1,10 @@
+v 3
+file . "maq_estado.vhdl" "20161020132638.000" "20161020133406.748":
+  entity maq_estado at 3( 6) + 0 on 13;
+  architecture a_maq_estado of maq_estado at 16( 256) + 0 on 14;
+file . "rom.vhdl" "20161020132638.000" "20161020132958.285":
+  entity rom at 1( 0) + 0 on 11;
+  architecture a_rom of rom at 14( 237) + 0 on 12;
+file . "pc.vhdl" "20161020154950.000" "20161020134952.660":
+  entity pc at 4( 168) + 0 on 17;
+  architecture a_pc of pc at 18( 451) + 0 on 18;
