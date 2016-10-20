@@ -1,3 +1,4 @@
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -48,28 +49,32 @@ architecture a_uc1 of uc1 is
 	begin		-----------------------------
 
 	pc0 : pc port map (
+			clk      => clk,
+			rst      => rst,
+			wr_en    => wr_en_pc,
+			data_in  => pc_in,
+			data_out => pc_out
+			);
+	rom0 : rom port map (
+			clk      => clk,
+			endereco => pc_out,
+			dado     => instrucao
+			);
+	maq_estado0 : maq_estado port map (
 					clk      => clk,
 					rst      => rst,
-					wr_en    => wr_en_pc,
-					data_in  => pc_in,
-					data_out => pc_out
+					data_out => estado
 					);
-	rom0 : rom port map (
-					clk      => clk,
-					endereco => pc_out, -- Os tamanhos são diferentes, ajuestei pc_out pro mesmo tamanaho do numero de enreços da rom
-					dado     => instrucao
-					);
-	maq_estado0 : maq_estado port map (
-										clk      => clk,
-										rst      => rst, -- não havia no declarado para esse sinal
-										data_out => estado
-										);
 
-	pc_in <= pc_out + 1 when wr_en_pc = '1' and jmp_en = '0';
-	pc_in <= instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'; -- Mudei pra pegar os 7 primeiros bits em vez dos 8 primeiros
+	pc_in <= 
+		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' else
+		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
+		else "0000000";
 
-	wr_en_pc <= '1' when estado = '1';
-	wr_en_pc <= '0' when estado = '0';
+	wr_en_pc <= 
+		'1' when estado = '1' else
+		'0' when estado = '0'
+		else '0';
 
 	--opcode 111 é jump
 	-- 111 + 000 + 000 + 7 bits de endereco
@@ -78,6 +83,8 @@ architecture a_uc1 of uc1 is
 
 	jmp_en <= '1' when opcode = "111"
 		else '0';
+		
+	--wr_en_pc <= '0' when rst = '1';
 
 
 end architecture;

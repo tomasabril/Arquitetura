@@ -1,5 +1,4 @@
--- Mudei os tamanhos de endereços de data_in, data_out e registro para 7 bits
--- Assim bate com o tamanho da rom, pois o PC tem que apontar para um dos 128 endereços
+--  o PC tem que apontar para um dos 128 endereços
 
 library ieee;
 use ieee.std_logic_1164.all;

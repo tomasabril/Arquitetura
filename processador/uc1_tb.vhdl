@@ -35,6 +35,7 @@ architecture a_uc1_tb of uc1_tb is
 
 		process
 		begin
+			wait for 100 ns;
 			rst <= '1';		--reseta no inicio
 			wait for 100 ns;
 			rst <= '0';
