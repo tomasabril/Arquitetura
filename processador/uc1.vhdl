@@ -7,13 +7,15 @@ use ieee.numeric_std.all;
 -- primeira unidade de controle para ser entregue dia 21/out
 entity uc1 is
 	port(
+		clk : in std_logic;
+		rst : in std_logic
 		);
 end entity;
 
 architecture a_uc1 of uc1 is
 
 	signal pc_out, pc_in : unsigned(15 downto 0);
-	signal clk, rst, wr_en_pc, jmp_en : std_logic;
+	signal wr_en_pc, jmp_en : std_logic;
 	signal instrucao : unsigned(16 downto 0);
 	signal opcode : unsigned(2 downto 0);
 
