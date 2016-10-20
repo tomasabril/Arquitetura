@@ -13,7 +13,7 @@ end entity;
 
 architecture a_uc1 of uc1 is
 
-	signal pc_out, pc_in : unsigned(16 downto 0);
+	signal pc_out, pc_in : unsigned(6 downto 0);
 	signal wr_en_pc, jmp_en : std_logic;
 	signal instrucao : unsigned(16 downto 0);
 	signal opcode : unsigned(2 downto 0);
@@ -24,8 +24,8 @@ architecture a_uc1 of uc1 is
 			clk      : in std_logic;
 			rst      : in std_logic;
 			wr_en    : in std_logic;
-			data_in  : in unsigned(16 downto 0);
-			data_out : out unsigned(16 downto 0)
+			data_in  : in unsigned(6 downto 0);
+			data_out : out unsigned(6 downto 0)
 		);
 	end component;
 
@@ -56,7 +56,7 @@ architecture a_uc1 of uc1 is
 					);
 	rom0 : rom port map (
 					clk      => clk,
-					endereco => pc_out, -- Os tamanhos são diferentes
+					endereco => pc_out, -- Os tamanhos são diferentes, ajuestei pc_out pro mesmo tamanaho do numero de enreços da rom
 					dado     => instrucao
 					);
 	maq_estado0 : maq_estado port map (
@@ -66,7 +66,7 @@ architecture a_uc1 of uc1 is
 										);
 
 	pc_in <= pc_out + 1 when wr_en_pc = '1' and jmp_en = '0';
-	pc_in <= instrucao(7 downto 0) when wr_en_pc = '1' and jmp_en = '1'; --tamano não corresponde
+	pc_in <= instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'; -- Mudei pra pegar os 7 primeiros bits em vez dos 8 primeiros
 
 	wr_en_pc <= '1' when estado = '1';
 	wr_en_pc <= '0' when estado = '0';
