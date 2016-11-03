@@ -15,7 +15,9 @@ end entity;
 architecture a_maq_estado2 of maq_estado2 is
 	signal estado : unsigned(1 downto 0);	--valor guardado pelo registrador
 begin
-
+-- 00 fetch
+-- 01 decode
+-- 10 execute
 	process(clk,rst)
 	begin
 		if rst='1' then
