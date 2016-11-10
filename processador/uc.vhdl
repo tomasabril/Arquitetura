@@ -17,7 +17,7 @@ architecture a_uc of uc is
 	signal pc_out, pc_in : unsigned(6 downto 0);
 	signal wr_en_pc, jmp_en, wr_en_estado_pulo, wr_en_banco_reg16b : std_logic;
 	signal instrucao : unsigned(16 downto 0);
-	signal opcode : unsigned(4 downto 0);
+	signal opcode : unsigned(3 downto 0);
 	signal estado : unsigned(1 downto 0);	-- fetch decode execute
 	signal select_reg1, select_reg2 : unsigned(2 downto 0);
 	signal bancoreg_datain : unsigned(15 downto 0);
@@ -134,28 +134,89 @@ architecture a_uc of uc is
 		);
 
 -------------------------------
+-- 00 fetch
+-- 01 decode
+-- 10 execute
 
-	pc_in <= 
-		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' else
+--lista de opcodes:
+--0000 nop
+--0001 soma entre registradores, resultado fica no primeiro
+--0010 subtracao entre registradores, rersultado fica no primeiro
+--0011 move de registrador para registrador
+--0100 move constante para registrador ou ram dependendo da flag
+--
+--1101 jmp se a conta anterior deu negativo
+--1110 jmp se a conta anterior deu zero 
+--1111 jmp incondicional
+
+------------------------------------
+
+	opcode <= instrucao(16 downto 13) when estado = "00"
+		else "0000";
+	
+	pc_in <= --proxima instrução normal
+		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' and estado = "10" else
+		--pulo incondicional
 		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
+		and opcode = "1111" and estado = "10"
+		
 		else "0000000";
 
 	wr_en_pc <= 
-		'1' when estado = '10'
+		'1' when estado = "10"
 		else '0';
 
-	--opcode 111 é jump
-	--000 carrega registador com valor imediato
-	-- 111 + 000 + 000 + 7 bits de endereco
-
-	opcode <= instrucao(16 downto 14);
-
-	jmp_en <= '1' when opcode = "111"
+	jmp_en <= '1' when opcode = "1111" or opcode = "1110" or opcode = "1101"
+		and estado = "01"
 		else '0';
 
-	-- soma
+	-- 
+	select_reg1 <= instrucao(12 downto 9) when opcode = "0001"
+		and estado = "00"
+		else "0000";
+	select_reg2 <= instrucao(8 downto 5) when opcode = "0001"
+		and estado = "00"
+		else "0000";
 	
+	in2_ula <= bancoreg_out2 when opcode = "0001"
+		and estado = "01"
+		else "0000000000000000";
+	select_ula <= "000" when opcode = "0001"
+		and estado = "01"
+		else "000";
+	
+	bancoreg_datain <= out_ula when opcode = "0001"
+		and estado = "10"
+		else "0000000000000000";
+
+	sel_writereg <= instrucao(8 downto 5) when opcode = "0001"
+		and estado = "10"
+		else "0000000000000000";
+	
+	wr_en_banco_reg16b <= '1' when opcode = "0001"
+		and estado = "10"
+		else '0';
 
 
 end architecture;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
