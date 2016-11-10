@@ -171,29 +171,32 @@ architecture a_uc of uc is
 		else '0';
 
 	-- 
-	select_reg1 <= instrucao(12 downto 9) when opcode = "0001"
+	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
 		and estado = "00"
 		else "0000";
-	select_reg2 <= instrucao(8 downto 5) when opcode = "0001"
+	select_reg2 <= instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
 		and estado = "00"
 		else "0000";
 	
-	in2_ula <= bancoreg_out2 when opcode = "0001"
+	in2_ula <= bancoreg_out2 when (opcode = "0001" or opcode = "0010")
 		and estado = "01"
 		else "0000000000000000";
 	select_ula <= "000" when opcode = "0001"
-		and estado = "01"
+		and estado = "01" else
+		"001" when opcode = "0010"
+		and estado = "01" 
 		else "000";
 	
 	bancoreg_datain <= out_ula when opcode = "0001"
 		and estado = "10"
+		else 
 		else "0000000000000000";
 
-	sel_writereg <= instrucao(8 downto 5) when opcode = "0001"
+	sel_writereg <= instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
 		and estado = "10"
 		else "0000000000000000";
 	
-	wr_en_banco_reg16b <= '1' when opcode = "0001"
+	wr_en_banco_reg16b <= '1' when opcode = (opcode = "0001" or opcode = "0010")
 		and estado = "10"
 		else '0';
 
