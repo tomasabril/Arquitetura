@@ -5,10 +5,10 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 -- estado_pulo é um estado da conta anterior pra ver se vai fazer o pulo condicional
--- 000 outros casos
--- 001 a conta anterior deu zero
--- 010 a conta anterior deu positivo
--- 011 a conta anterior deu negativo
+-- Estado da operação
+-- 00: os dois são iguais
+-- 01: maior
+-- 10: menor
 -- 
 
 
@@ -29,7 +29,7 @@ begin
 	process(clk,rst,wr_en)		-- processo comeca apenas quando um desses sinais mudar
 	begin
 		if rst='1' then		--ligando o reset apaga imediatamente
-			registro <= "000";
+			registro <= "00";
 		elsif wr_en='1' then
 			if rising_edge(clk) then
 				registro <= data_in;

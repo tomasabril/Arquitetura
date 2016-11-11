@@ -21,12 +21,12 @@ begin
 	process(clk,rst)
 	begin
 		if rst='1' then
-			estado_s <= "00";
+			estado <= "00";
 		elsif rising_edge(clk) then
-			if estado_s="10" then -- se agora esta em 2
-				estado_s <= "00"; -- o prox vai voltar ao zero
+			if estado="10" then -- se agora esta em 2
+				estado <= "00"; -- o prox vai voltar ao zero
 			else
-				estado_s <= estado_s+1; -- senao avanca
+				estado <= estado+1; -- senao avanca
 		end if;
 		end if;
 	end process;

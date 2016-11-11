@@ -86,6 +86,7 @@ architecture a_uc of uc is
 			saida    : out unsigned(15 downto 0);
 			estado   : out unsigned(2 downto 0)
 		);
+	end component;
 
 	begin------------------------------------------------
 
@@ -111,7 +112,7 @@ architecture a_uc of uc is
 		read_reg2  => select_reg2,	--igual ao de cima
 		write_data => bancoreg_datain,	--caso seja imediato taca a data
 		write_reg  => sel_writereg,	--Seleciona 1 dos registradores pra ser escrito
-		wr_en      : wr_en_banco_reg16b,
+		wr_en      => wr_en_banco_reg16b,
 		clk        => clk,
 		rst        => rst,
 		--saidas de dados
