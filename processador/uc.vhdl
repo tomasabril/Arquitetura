@@ -18,7 +18,7 @@ architecture a_uc of uc is
 	signal wr_en_pc, jmp_en, wr_en_estado_pulo, wr_en_banco_reg16b : std_logic;
 	signal instrucao : unsigned(16 downto 0);
 	signal opcode : unsigned(3 downto 0);
-	signal estado : unsigned(1 downto 0);	-- fetch decode execute
+	signal estado : unsigned(1 downto 0);	-- fetch, decode/execute, wr-b
 	signal select_reg1, select_reg2 : unsigned(2 downto 0);
 	signal bancoreg_datain : unsigned(15 downto 0);
 	signal sel_writereg : unsigned(2 downto 0);	--Seleciona 1 dos registradores pra ser escrito
@@ -74,8 +74,8 @@ architecture a_uc of uc is
 			clk      : in std_logic;
 			rst      : in std_logic;
 			wr_en    : in std_logic;
-			data_in  : in unsigned(2 downto 0);
-			data_out : out unsigned (2 downto 0)
+			data_in  : in unsigned(1 downto 0);
+			data_out : out unsigned (1 downto 0)
 		);
 	end component;
 	component ula is
@@ -84,7 +84,7 @@ architecture a_uc of uc is
 			entrada1 : in unsigned(15 downto 0);
 			selecao  : in unsigned(2 downto 0);
 			saida    : out unsigned(15 downto 0);
-			estado   : out unsigned(2 downto 0)
+			estado   : out unsigned(1 downto 0)
 		);
 	end component;
 
