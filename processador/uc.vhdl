@@ -26,7 +26,7 @@ architecture a_uc of uc is
 	signal in2_ula : unsigned(15 downto 0);
 	signal select_ula : unsigned(2 downto 0);
 	signal out_ula : unsigned(15 downto 0);
-	signal in_estado_pulo, out_estado_pulo : unsigned(2 downto 0);
+	signal in_estado_pulo, out_estado_pulo : unsigned(1 downto 0);
 
 	component pc is
 		port(
@@ -139,15 +139,23 @@ architecture a_uc of uc is
 -- 10 execute
 
 --lista de opcodes:
+--formato 1
 --0000 nop
 --0001 soma entre registradores, resultado fica no primeiro
 --0010 subtracao entre registradores, rersultado fica no primeiro
 --0011 move de registrador para registrador
 --0100 move constante para registrador ou ram dependendo da flag
---
---1101 jmp se a conta anterior deu negativo
---1110 jmp se a conta anterior deu zero 
---1111 jmp incondicional
+--0100 comparacao
+
+--formato 2
+--0101 carga de constante
+--0110 soma consatnte ao registrador
+--0111 Subtrai cosntante do registrador
+
+--formato 3
+--1010 Jump incondicional
+--1011 Jump se menor
+--1100 Jump caso igual
 
 ------------------------------------
 

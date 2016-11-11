@@ -17,13 +17,13 @@ entity estado_pulo is
 		clk      : in std_logic;
 		rst      : in std_logic;
 		wr_en    : in std_logic;
-		data_in  : in unsigned(2 downto 0);
-		data_out : out unsigned (2 downto 0)
+		data_in  : in unsigned(1 downto 0);
+		data_out : out unsigned (1 downto 0)
 	);
 end entity;
 
 architecture a_estado_pulo of estado_pulo is
-	signal registro:	unsigned(3 downto 0);	--valor guardado pelo registrador
+	signal registro:	unsigned(1 downto 0);	--valor guardado pelo registrador
 begin
 
 	process(clk,rst,wr_en)		-- processo comeca apenas quando um desses sinais mudar

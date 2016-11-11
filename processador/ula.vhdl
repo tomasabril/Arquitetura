@@ -23,8 +23,6 @@ end entity;
 -- Seleçãp
 -- 000 soma
 -- 001 subtração
--- 010 multiplicação	!!NAO TEM
--- 011 divisão
 -- 100 maior		
 -- 101 é zero		
 -- 110 é igual		
@@ -36,9 +34,9 @@ architecture a_ula of ula is
 	begin
 		saida <=
 			entrada0 + entrada1 when selecao = "000" else
-			entrada0-entrada1 when selecao = "001" else
-			entrada0 * entrada1 when selecao = "010" else --multiplicacao da um problemao, retorna 32 bits em vez de 16
-			entrada0/entrada1 when selecao = "011"
+			entrada0-entrada1 when selecao = "001"
+			--entrada0 * entrada1 when selecao = "010" else --multiplicacao da um problemao, retorna 32 bits em vez de 16
+			--entrada0/entrada1 when selecao = "011"
 			else "0000000000000000";
 		
 		-- Compara os dois registradores e guarda a resposta em resposta_p_mux
