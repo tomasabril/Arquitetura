@@ -135,8 +135,8 @@ architecture a_uc of uc is
 
 -------------------------------
 -- 00 fetch
--- 01 decode
--- 10 execute
+-- 01 decode/execute
+-- 10 write back
 
 --lista de opcodes:
 --formato 1
@@ -163,22 +163,22 @@ architecture a_uc of uc is
 		else "0000";
 	
 	pc_in <= --proxima instrução normal
-		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' and estado = "10" else
+		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' and estado = "10"  else
 		--pulo incondicional
 		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
-		and opcode = "1111" and estado = "10"
-		
+		and opcode = "1010" and estado = "10"
 		else "0000000";
 
 	wr_en_pc <= 
 		'1' when estado = "10"
 		else '0';
 
-	jmp_en <= '1' when opcode = "1111" or opcode = "1110" or opcode = "1101"
-		and estado = "01"
+	jmp_en <= '1' when (opcode = "1010" or opcode = "1011" or opcode = "1100")
+		and estado = "00"
 		else '0';
 
-	-- 
+	-- Seleção dos registradores para opção de soma e subtração entre registradores
+	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
 		and estado = "00"
 		else "0000";
@@ -186,6 +186,7 @@ architecture a_uc of uc is
 		and estado = "00"
 		else "0000";
 	
+	---------Decode/Execute
 	in2_ula <= bancoreg_out2 when (opcode = "0001" or opcode = "0010")
 		and estado = "01"
 		else "0000000000000000";
@@ -194,10 +195,9 @@ architecture a_uc of uc is
 		"001" when opcode = "0010"
 		and estado = "01" 
 		else "000";
-	
-	bancoreg_datain <= out_ula when opcode = "0001"
+	---------Write/Back
+	bancoreg_datain <= out_ula when (opcode = "0001" or opcode = "0010") 
 		and estado = "10"
-		else 
 		else "0000000000000000";
 
 	sel_writereg <= instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
