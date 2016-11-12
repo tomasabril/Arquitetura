@@ -1,6 +1,13 @@
 # Auto detect text files and perform LF normalization
 * text=auto
 
+# arquivos sempre com terminacao de linha unix
+*.vhdl text eol=lf
+*.sh text eol=lf
+
+# arquivos sempre com terminacao de linha unix
+*.bat text eol=crlf
+
 # Custom for Visual Studio
 *.cs     diff=csharp
 
