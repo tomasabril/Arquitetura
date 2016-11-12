@@ -7,11 +7,11 @@ use ieee.numeric_std.all;
 entity ula is
 	port
 		(
-			entrada0 : in unsigned(15 downto 0);
-			entrada1 : in unsigned(15 downto 0);
+			entrada0 : in unsigned(16 downto 0);
+			entrada1 : in unsigned(16 downto 0);
 			selecao  : in unsigned(2 downto 0);
 			
-			saida    : out unsigned(15 downto 0);
+			saida    : out unsigned(16 downto 0);
 			estado   : out unsigned(1 downto 0)
 		);
 end entity;
@@ -37,7 +37,7 @@ architecture a_ula of ula is
 			entrada0-entrada1 when selecao = "001"
 			--entrada0 * entrada1 when selecao = "010" else --multiplicacao da um problemao, retorna 32 bits em vez de 16
 			--entrada0/entrada1 when selecao = "011"
-			else "0000000000000000";
+			else "00000000000000000";
 		
 		-- Compara os dois registradores e guarda a resposta em resposta_p_mux
 		cmp_en <=

@@ -15,17 +15,17 @@ end entity;
 architecture a_uc of uc is
 
 	signal pc_out, pc_in : unsigned(6 downto 0);
-	signal wr_en_pc, jmp_en, wr_en_estado_pulo, wr_en_banco_reg16b : std_logic;
+	signal wr_en_pc, jmp_en, wr_en_estado_pulo, wr_en_banco_reg17b : std_logic;
 	signal instrucao : unsigned(16 downto 0);
 	signal opcode : unsigned(3 downto 0);
 	signal estado : unsigned(1 downto 0);	-- fetch, decode/execute, wr-b
 	signal select_reg1, select_reg2 : unsigned(2 downto 0);
-	signal bancoreg_datain : unsigned(15 downto 0);
+	signal bancoreg_datain : unsigned(16 downto 0);
 	signal sel_writereg : unsigned(2 downto 0);	--Seleciona 1 dos registradores pra ser escrito
-	signal bancoreg_out1, bancoreg_out2 : unsigned(15 downto 0);
-	signal in2_ula : unsigned(15 downto 0);
+	signal bancoreg_out1, bancoreg_out2 : unsigned(16 downto 0);
+	signal in2_ula : unsigned(16 downto 0);
 	signal select_ula : unsigned(2 downto 0);
-	signal out_ula : unsigned(15 downto 0);
+	signal out_ula : unsigned(16 downto 0);
 	signal in_estado_pulo, out_estado_pulo : unsigned(1 downto 0);
 
 	component pc is
@@ -38,7 +38,7 @@ architecture a_uc of uc is
 		);
 	end component;
 
-	component banco_reg16b is
+	component banco_reg17b is
 				port(
 				read_reg1  : in unsigned(2 downto 0);	--seleciona 1 dos registradores pra ler os dados
 				read_reg2  : in unsigned(2 downto 0);	--igual ao de cima
@@ -61,7 +61,7 @@ architecture a_uc of uc is
 			);
 	end component;
 
-	component maq_estado2 is
+	component maq_estado2b is
 		port(
 			clk      : in std_logic;
 			rst      : in std_logic;
@@ -102,17 +102,17 @@ architecture a_uc of uc is
 		endereco => pc_out,
 		dado     => instrucao
 		);
-	maq_estado20 : maq_estado2 port map (
+	maq_estado2b0 : maq_estado2 port map (
 		clk      => clk,
 		rst      => rst,
 		data_out => estado
 		);
-	banco_reg16b0 : banco_reg16b port map (
+	banco_reg17b0 : banco_reg17b port map (
 		read_reg1  => select_reg1,	--seleciona 1 dos registradores pra ler os dados
 		read_reg2  => select_reg2,	--igual ao de cima
 		write_data => bancoreg_datain,	--caso seja imediato taca a data
 		write_reg  => sel_writereg,	--Seleciona 1 dos registradores pra ser escrito
-		wr_en      => wr_en_banco_reg16b,
+		wr_en      => wr_en_banco_reg17b,
 		clk        => clk,
 		rst        => rst,
 		--saidas de dados
@@ -190,7 +190,7 @@ architecture a_uc of uc is
 	---------Decode/Execute
 	in2_ula <= bancoreg_out2 when (opcode = "0001" or opcode = "0010")
 		and estado = "01"
-		else "0000000000000000";
+		else "00000000000000000";
 	select_ula <= "000" when opcode = "0001"
 		and estado = "01" else
 		"001" when opcode = "0010"
@@ -199,13 +199,13 @@ architecture a_uc of uc is
 	---------Write/Back
 	bancoreg_datain <= out_ula when (opcode = "0001" or opcode = "0010") 
 		and estado = "10"
-		else "0000000000000000";
+		else "00000000000000000";
 
 	sel_writereg <= instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
 		and estado = "10"
-		else "0000000000000000";
+		else "00000000000000000";
 	
-	wr_en_banco_reg16b <= '1' when opcode = (opcode = "0001" or opcode = "0010")
+	wr_en_banco_reg17b <= '1' when opcode = (opcode = "0001" or opcode = "0010")
 		and estado = "10"
 		else '0';
 

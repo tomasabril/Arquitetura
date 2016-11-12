@@ -4,7 +4,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity maq_estado2 is
+entity maq_estado2b is
 	port(
 		clk      : in std_logic;
 		rst      : in std_logic;
@@ -12,7 +12,7 @@ entity maq_estado2 is
 	);
 end entity;
 
-architecture a_maq_estado2 of maq_estado2 is
+architecture a_maq_estado2b of maq_estado2b is
 	signal estado : unsigned(1 downto 0);	--valor guardado pelo registrador
 begin
 -- 00 fetch
