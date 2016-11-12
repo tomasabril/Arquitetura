@@ -19,9 +19,9 @@ architecture a_uc of uc is
 	signal instrucao : unsigned(16 downto 0);
 	signal opcode : unsigned(3 downto 0);
 	signal estado : unsigned(1 downto 0);	-- fetch, decode/execute, wr-b
-	signal select_reg1, select_reg2 : unsigned(2 downto 0);
+	signal select_reg1, select_reg2 : unsigned(3 downto 0);
 	signal bancoreg_datain : unsigned(16 downto 0);
-	signal sel_writereg : unsigned(2 downto 0);	--Seleciona 1 dos registradores pra ser escrito
+	signal sel_writereg : unsigned(3 downto 0);	--Seleciona 1 dos registradores pra ser escrito
 	signal bancoreg_out1, bancoreg_out2 : unsigned(16 downto 0);
 	signal in2_ula : unsigned(16 downto 0);
 	signal select_ula : unsigned(2 downto 0);
@@ -40,16 +40,16 @@ architecture a_uc of uc is
 
 	component banco_reg17b is
 				port(
-				read_reg1  : in unsigned(2 downto 0);	--seleciona 1 dos registradores pra ler os dados
-				read_reg2  : in unsigned(2 downto 0);	--igual ao de cima
-				write_data : in unsigned(15 downto 0);	--caso seja imediato taca a data
-				write_reg  : in unsigned(2 downto 0);	--Seleciona 1 dos registradores pra ser escrito
+				read_reg1  : in unsigned(3 downto 0);	--seleciona 1 dos registradores pra ler os dados
+				read_reg2  : in unsigned(3 downto 0);	--igual ao de cima
+				write_data : in unsigned(16 downto 0);	--caso seja imediato taca a data
+				write_reg  : in unsigned(3 downto 0);	--Seleciona 1 dos registradores pra ser escrito
 				wr_en      : in std_logic;
 				clk        : in std_logic;
 				rst        : in std_logic;
 				--saidas de dados
-				read_data1 : out unsigned(15 downto 0);
-				read_data2 : out unsigned(15 downto 0)
+				read_data1 : out unsigned(16 downto 0);
+				read_data2 : out unsigned(16 downto 0)
 				);
 	end component;
 
@@ -80,10 +80,10 @@ architecture a_uc of uc is
 	end component;
 	component ula is
 		port(
-			entrada0 : in unsigned(15 downto 0);
-			entrada1 : in unsigned(15 downto 0);
+			entrada0 : in unsigned(16 downto 0);
+			entrada1 : in unsigned(16 downto 0);
 			selecao  : in unsigned(2 downto 0);
-			saida    : out unsigned(15 downto 0);
+			saida    : out unsigned(16 downto 0);
 			estado   : out unsigned(1 downto 0)
 		);
 	end component;
@@ -102,7 +102,7 @@ architecture a_uc of uc is
 		endereco => pc_out,
 		dado     => instrucao
 		);
-	maq_estado2b0 : maq_estado2 port map (
+	maq_estado2b0 : maq_estado2b port map (
 		clk      => clk,
 		rst      => rst,
 		data_out => estado
@@ -203,9 +203,9 @@ architecture a_uc of uc is
 
 	sel_writereg <= instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
 		and estado = "10"
-		else "00000000000000000";
+		else "0000";
 	
-	wr_en_banco_reg17b <= '1' when opcode = (opcode = "0001" or opcode = "0010")
+	wr_en_banco_reg17b <= '1' when (opcode = "0001" or opcode = "0010")
 		and estado = "10"
 		else '0';
 
