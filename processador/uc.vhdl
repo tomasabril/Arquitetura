@@ -142,8 +142,8 @@ architecture a_uc of uc is
 --lista de opcodes:
 --formato 1
 --0000 nop
---0001 soma entre registradores, resultado fica no primeiro
---0010 subtracao entre registradores, rersultado fica no primeiro
+--0001 soma entre registradores, resultado fica no primeiro			ok
+--0010 subtracao entre registradores, rersultado fica no primeiro	ok
 --0011 move de registrador para registrador
 --0100 move constante para registrador ou ram dependendo da flag
 --0100 comparacao
@@ -160,9 +160,11 @@ architecture a_uc of uc is
 
 ------------------------------------
 
+	-- Vê o Opcode da instrução
 	opcode <= instrucao(16 downto 13) when estado = "00"
 		else "0000";
 	
+	-- Multiplexador de 
 	pc_in <= --proxima instrução normal
 		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' and estado = "10"  else
 		--pulo incondicional
@@ -208,7 +210,22 @@ architecture a_uc of uc is
 	wr_en_banco_reg17b <= '1' when (opcode = "0001" or opcode = "0010")
 		and estado = "10"
 		else '0';
-
+	
+	-- Mover Registradores
+	---------Fetch
+	select_reg1 <= instrucao(12 downto 9) when opcode = "0011"
+		and estado = "00"
+		else "0000";
+	select_reg2 <= instrucao(8 downto 5) when opcode = "0011" 
+		and estado = "00"
+		else "0000";
+	---------Decode/Execute
+	--nada, o resultado já esta no registrador lido
+	---------Write/Back
+	wr_en_banco_reg17b <= '1' when opcode = "0011" and estado "10";
+	sel_writereg <= instrucao(12 downto 9) when opcode = "0011" and estado "10";
+	bancoreg_datain <=  bancoreg_out2 when opcode = "0011" and estado "10";
+	
 
 end architecture;
 
