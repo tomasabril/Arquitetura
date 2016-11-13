@@ -150,8 +150,8 @@ architecture a_uc of uc is
 
 --formato 2
 --0101 carga de constante											ok
---0110 soma constante ao registrador
---0111 Subtrai cosntante do registrador
+--0110 soma constante ao registrador								ok
+--0111 Subtrai cosntante do registrador								ok
 
 --formato 3
 --1010 Jump incondicional											ok
@@ -164,7 +164,7 @@ architecture a_uc of uc is
 	opcode <= instrucao(16 downto 13) when estado = "00"
 		else "0000";
 	
-	-- Multiplexador de 
+	-- Atualização do PC ou JUMP incondiconal
 	pc_in <= --proxima instrução normal
 		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' and estado = "10"  else
 		--pulo incondicional
@@ -180,7 +180,8 @@ architecture a_uc of uc is
 		and estado = "00"
 		else '0';
 
-	-- Seleção dos registradores para opção de soma e subtração entre registradores
+		
+	-- Soma e subtração entre registradores
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
 		and estado = "00"
@@ -250,7 +251,7 @@ architecture a_uc of uc is
 	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
 	
 	
-	--Carga de constante
+	-- Carga de constante
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
 		and estado = "00"
@@ -279,6 +280,38 @@ architecture a_uc of uc is
 		and estado = "10"
 		else '0';
 		
+		
+	-- Soma e subtração de constantes ao registrador
+	---------Fetch
+	select_reg1 <= instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
+		and estado = "00"
+		else "0000";
+		
+	---------Decode/Execute
+	in2_ula <= bancoreg_out2 when (opcode = "0110" or opcode = "0111")
+		and estado = "01"
+		else "00000000000000000";
+		
+	select_ula <= "000" when opcode = "0110"
+		and estado = "01" else
+		"001" when opcode = "0111"
+		and estado = "01" 
+		else "000";
+		
+	---------Write/Back	
+	bancoreg_datain <= out_ula when (opcode = "0110" or opcode = "0111") 
+		and estado = "10"
+		else "00000000000000000";
+
+	sel_writereg <= instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
+		and estado = "10"
+		else "0000";
+	
+	wr_en_banco_reg17b <= '1' when (opcode = "0110" or opcode = "0111")
+		and estado = "10"
+		else '0';
+	
+	
 end architecture;
 
 
