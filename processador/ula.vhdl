@@ -23,9 +23,7 @@ end entity;
 -- Seleçãp
 -- 000 soma
 -- 001 subtração
--- 100 maior		
--- 101 é zero		
--- 110 é igual		
+-- 100 comparação	
 
 architecture a_ula of ula is
 
@@ -41,10 +39,7 @@ architecture a_ula of ula is
 		
 		-- Compara os dois registradores e guarda a resposta em resposta_p_mux
 		cmp_en <=
-			'1' when selecao = "100" else
-			'1' when selecao = "101" else
-			'1' when selecao = "110" else
-			'0';
+			'1' when selecao = "100" else '0';
 		
 		-- Multiplexador para os branchs
 		estado <= "00" when entrada0 = entrada1 and cmp_en = '1' else

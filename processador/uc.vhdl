@@ -144,7 +144,7 @@ architecture a_uc of uc is
 --0000 nop
 --0001 soma entre registradores, resultado fica no primeiro			ok
 --0010 subtracao entre registradores, rersultado fica no primeiro	ok
---0011 move de registrador para registrador
+--0011 move de registrador para registrador                         ok
 --0100 move constante para registrador ou ram dependendo da flag
 --0100 comparacao
 
@@ -211,6 +211,7 @@ architecture a_uc of uc is
 		and estado = "10"
 		else '0';
 	
+	
 	-- Mover Registradores
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when opcode = "0011"
@@ -219,14 +220,37 @@ architecture a_uc of uc is
 	select_reg2 <= instrucao(8 downto 5) when opcode = "0011" 
 		and estado = "00"
 		else "0000";
+		
 	---------Decode/Execute
 	--nada, o resultado já esta no registrador lido
+	
 	---------Write/Back
 	wr_en_banco_reg17b <= '1' when opcode = "0011" and estado "10";
 	sel_writereg <= instrucao(12 downto 9) when opcode = "0011" and estado "10";
 	bancoreg_datain <=  bancoreg_out2 when opcode = "0011" and estado "10";
 	
-
+	
+	--Comparação de valor entre dois registradores
+	---------Fetch
+	select_reg1 <= instrucao(12 downto 9) when opcode = "0100"
+		and estado = "00"
+		else "0000";
+	select_reg2 <= instrucao(8 downto 5) when opcode = "0100" 
+		and estado = "00"
+		else "0000";
+		
+	---------Decode/Execute
+	in2_ula <= bancoreg_out2 when (opcode = "0100" or opcode = "0100")
+		and estado = "01" else "00000000000000000";
+		
+	select_ula <= "100" when opcode = "0100"
+		and estado = "01" else "000";
+		
+	---------Write/Back
+	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
+	
+	
+		
 end architecture;
 
 
