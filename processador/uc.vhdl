@@ -155,8 +155,8 @@ architecture a_uc of uc is
 
 --formato 3
 --1010 Jump incondicional											ok
---1011 Jump se menor
---1100 Jump caso igual
+--1011 Jump se menor												ok
+--1100 Jump caso igual												ok
 
 ------------------------------------
 
@@ -164,6 +164,13 @@ architecture a_uc of uc is
 	opcode <= instrucao(16 downto 13) when estado = "00"
 		else "0000";
 	
+	-- Enables do JMP
+	wr_en_pc <= '1' when estado = "10" else '0';
+
+	jmp_en <= '1' when (opcode = "1010" or opcode = "1011" or opcode = "1100")
+		and estado = "00"
+		else '0';
+		
 	-- Atualização do PC ou JUMP incondiconal
 	pc_in <= --proxima instrução normal
 		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' and estado = "10"  else
@@ -171,16 +178,19 @@ architecture a_uc of uc is
 		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
 		and opcode = "1010" and estado = "10"
 		else "0000000";
+	
+	-- Pulos Condicionais
+	-- JMP caso menor
+		pc_in <= instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
+		and opcode = "1011" and estado = "10" and out_estado_pulo = "10"
+		else "0000000";
+	-- JMP caso igual
+		pc_in <= instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
+		and opcode = "1100" and estado = "10" and out_estado_pulo = "10"
+		else "0000000";
 
-	wr_en_pc <= 
-		'1' when estado = "10"
-		else '0';
 
-	jmp_en <= '1' when (opcode = "1010" or opcode = "1011" or opcode = "1100")
-		and estado = "00"
-		else '0';
 
-		
 	-- Soma e subtração entre registradores
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
@@ -311,6 +321,10 @@ architecture a_uc of uc is
 		and estado = "10"
 		else '0';
 	
+	
+	
+	
+
 	
 end architecture;
 
