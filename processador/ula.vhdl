@@ -20,10 +20,11 @@ end entity;
 -- 01: maior
 -- 10: menor
 
--- Seleçãp
+-- Seleção
 -- 000 soma
 -- 001 subtração
 -- 100 comparação	
+-- 101 carga de constante
 
 architecture a_ula of ula is
 
@@ -35,6 +36,7 @@ architecture a_ula of ula is
 			entrada0-entrada1 when selecao = "001"
 			--entrada0 * entrada1 when selecao = "010" else --multiplicacao da um problemao, retorna 32 bits em vez de 16
 			--entrada0/entrada1 when selecao = "011"
+			entrada1 when selecao = "101"
 			else "00000000000000000";
 		
 		-- Compara os dois registradores e guarda a resposta em resposta_p_mux
@@ -46,6 +48,8 @@ architecture a_ula of ula is
 				  "01" when entrada0 > entrada1 and cmp_en = '1' else
 				  "10" when entrada0 < entrada1 and cmp_en = '1' else
 				  "11";
+				  
+		
 	
 end architecture;
 

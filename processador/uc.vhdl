@@ -146,15 +146,15 @@ architecture a_uc of uc is
 --0010 subtracao entre registradores, rersultado fica no primeiro	ok
 --0011 move de registrador para registrador                         ok
 --0100 move constante para registrador ou ram dependendo da flag
---0100 comparacao
+--0100 comparacao                                                   ok
 
 --formato 2
---0101 carga de constante
---0110 soma consatnte ao registrador
+--0101 carga de constante											ok
+--0110 soma constante ao registrador
 --0111 Subtrai cosntante do registrador
 
 --formato 3
---1010 Jump incondicional
+--1010 Jump incondicional											ok
 --1011 Jump se menor
 --1100 Jump caso igual
 
@@ -250,6 +250,34 @@ architecture a_uc of uc is
 	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
 	
 	
+	--Carga de constante
+	---------Fetch
+	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
+		and estado = "00"
+		else "0000";
+		
+	---------Decode/Execute
+	in2_ula <= "0000000000"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '0' and estado = "00"
+		else "0000";
+	
+	in2_ula <= "1111111111"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '1' and estado = "00"
+		else "0000";
+		
+	select_ula <= "101" when opcode = "0101"
+		and estado = "01" else "000";
+	
+	---------Write/Back
+	bancoreg_datain <= out_ula when opcode = "0101" 
+		and estado = "10"
+		else "00000000000000000";
+		
+	sel_writereg <= instrucao(12 downto 9) when opcode = "0101" 
+		and estado = "10"
+		else "0000";
+	
+	wr_en_banco_reg17b <= '1' when opcode = "0101" 
+		and estado = "10"
+		else '0';
 		
 end architecture;
 
