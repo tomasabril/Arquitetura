@@ -27,6 +27,9 @@ architecture a_uc of uc is
 	signal select_ula : unsigned(2 downto 0);
 	signal out_ula : unsigned(16 downto 0);
 	signal in_estado_pulo, out_estado_pulo : unsigned(1 downto 0);
+	signal end_ram: unsigned (6 downto 0);
+	signal in_ram, out_ram: unsigned (16 downto 0);
+	signal wr_en_ram: std_logic;
 
 	component pc is
 		port(
@@ -87,6 +90,16 @@ architecture a_uc of uc is
 			estado   : out unsigned(1 downto 0)
 		);
 	end component;
+	
+	component ram is
+		 port(
+				 clk : 		in std_logic;
+				 endereco:	in unsigned(6 downto 0);
+				 wr_en : 	in std_logic;
+				 dado_in:	in unsigned(16 downto 0);
+				 dado_out : out unsigned(16 downto 0)
+			);
+	end component;
 
 	begin------------------------------------------------
 
@@ -134,6 +147,13 @@ architecture a_uc of uc is
 		estado   => in_estado_pulo
 		);
 
+	ram0: ram port map (
+	 clk		=> clk,
+	 endereco	=>  end_ram,
+	 wr_en 		=> wr_en_ram,
+	 dado_in	=> in_ram,
+	 dado_out 	=> out_ram
+	);
 -------------------------------
 -- 00 fetch
 -- 01 decode/execute
