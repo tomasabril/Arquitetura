@@ -33,7 +33,7 @@ architecture a_ula of ula is
 	begin
 		saida <=
 			entrada0 + entrada1 when selecao = "000" else
-			entrada0-entrada1 when selecao = "001"
+			entrada0-entrada1 when selecao = "001"	else
 			--entrada0 * entrada1 when selecao = "010" else --multiplicacao da um problemao, retorna 32 bits em vez de 16
 			--entrada0/entrada1 when selecao = "011"
 			entrada1 when selecao = "101"
