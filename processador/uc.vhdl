@@ -286,11 +286,11 @@ architecture a_uc of uc is
 		else "0000";
 		
 	---------Decode/Execute
-	--in2_ula <= "0000000000"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '0' and estado = "00"
-	--	else "0000";
+	in2_ula <= "0000000000"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '0' and estado = "00"
+		else "00000000000000000";
 	
-	--in2_ula <= "1111111111"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '1' and estado = "00"
-	--	else "0000";
+	in2_ula <= "1111111111"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '1' and estado = "00"
+		else "00000000000000000";
 		
 	select_ula <= "101" when opcode = "0101"
 		and estado = "01" else "000";
