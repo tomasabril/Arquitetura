@@ -3,7 +3,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-
+-- Faltou a gente por uma instrução de cmp com constante e colocar o programa na rom, além da parte mais dificil, testar
 -- primeira unidade de controle para ser entregue dia 21/out
 entity uc is
 	port(
@@ -172,6 +172,7 @@ architecture a_uc of uc is
 --0101 carga de constante											ok
 --0110 soma constante ao registrador								ok
 --0111 Subtrai cosntante do registrador								ok
+-- Comparação com constante 
 
 --formato 3
 --1010 Jump incondicional											ok
