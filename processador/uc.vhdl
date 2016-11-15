@@ -165,14 +165,14 @@ architecture a_uc of uc is
 --0001 soma entre registradores, resultado fica no primeiro			ok
 --0010 subtracao entre registradores, rersultado fica no primeiro	ok
 --0011 move de registrador para registrador                         ok	-- endereçamento = 00
---0100 move constante para registrador ou ram dependendo da flag	ok	-- endereçamento = 01
+--	   move constante para registrador ou ram dependendo da flag	Mudar para LW/SW	-- endereçamento = 01
 --0100 comparacao                                                   ok
 
 --formato 2
 --0101 carga de constante											ok
 --0110 soma constante ao registrador								ok
 --0111 Subtrai cosntante do registrador								ok
--- Comparação com constante 
+--1110 Comparação com constante 									ok
 
 --formato 3
 --1010 Jump incondicional											ok
@@ -280,6 +280,24 @@ architecture a_uc of uc is
 	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
 	
 	
+	--Comparação de valor entre cosntante e registrador
+	---------Fetch
+	select_reg1 <= instrucao(12 downto 9) when opcode = "1110" and estado = "00" else "0000";
+	
+	---------Decode/Execute
+	in2_ula <= "0000000000"&instrucao(6 downto 0) when opcode = "1110"  and estado = "01"
+		else "00000000000000000";
+	
+	in2_ula <= "1111111111"&instrucao(6 downto 0) when opcode = "1110"  and  estado = "01"
+		else "00000000000000000";
+		
+	select_ula <= "100" when opcode = "1110"
+		and estado = "01" else "000";
+	
+	---------Write/Back
+	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
+
+		
 	-- Carga de constante
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
@@ -287,10 +305,10 @@ architecture a_uc of uc is
 		else "0000";
 		
 	---------Decode/Execute
-	in2_ula <= "0000000000"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '0' and estado = "00"
+	in2_ula <= "0000000000"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '0' and estado = "01"
 		else "00000000000000000";
 	
-	in2_ula <= "1111111111"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '1' and estado = "00"
+	in2_ula <= "1111111111"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '1' and estado = "01"
 		else "00000000000000000";
 		
 	select_ula <= "101" when opcode = "0101"
