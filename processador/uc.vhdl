@@ -193,7 +193,10 @@ architecture a_uc of uc is
 		and estado = "00"
 		else '0';
 		
-	-- Atualização do PC ou JUMP incondiconal
+	
+	-------------------------------------------------Instruções-----------------------------------------------------------
+
+	-------------Atualização do PC ou JUMP incondiconal------------------------------------------------------------
 	pc_in <= --proxima instrução normal
 		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' and estado = "10"  else
 		--pulo incondicional
@@ -201,7 +204,7 @@ architecture a_uc of uc is
 		and opcode = "1010" and estado = "10"
 		else "0000000";
 	
-	-- Pulos Condicionais
+	------------Pulos Condicionais-----------------------------------------------------------------------------------
 	-- JMP caso menor
 		pc_in <= instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
 		and opcode = "1011" and estado = "10" and out_estado_pulo = "10"
@@ -213,7 +216,7 @@ architecture a_uc of uc is
 
 
 
-	-- Soma e subtração entre registradores
+	----------Soma e subtração entre registradores--------------------------------------------------------------------
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
 		and estado = "00"
@@ -245,7 +248,7 @@ architecture a_uc of uc is
 		else '0';
 	
 	
-	-- Mover Registradores
+	----------------Mover Registradores----------------------------------------------------------------------------
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when opcode = "0011"
 		and estado = "00" and instrucao(8 downto 7) = "00"
@@ -264,7 +267,7 @@ architecture a_uc of uc is
 	bancoreg_datain <=  bancoreg_out2 when opcode = "0011" and estado = "10";
 
 	
-	--Comparação de valor entre dois registradores
+	---------------Comparação de valor entre dois registradores-------------------------------------------------------
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when opcode = "0100" and estado = "00" else "0000";
 	select_reg2 <= instrucao(8 downto 5) when opcode = "0100" and estado = "00"	 else "0000";
@@ -280,7 +283,7 @@ architecture a_uc of uc is
 	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
 	
 	
-	--Comparação de valor entre cosntante e registrador
+	---------------Comparação de valor entre cosntante e registrador--------------------------------------------------
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when opcode = "1110" and estado = "00" else "0000";
 	
@@ -298,7 +301,7 @@ architecture a_uc of uc is
 	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
 
 		
-	-- Carga de constante
+	-----------------Carga de constante---------------------------------------------------------------------
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
 		and estado = "00"
@@ -328,7 +331,7 @@ architecture a_uc of uc is
 		else '0';
 		
 		
-	-- Soma e subtração de constantes ao registrador
+	-----------------Soma e subtração de constantes ao registrador-------------------------------------------------
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
 		and estado = "00"
