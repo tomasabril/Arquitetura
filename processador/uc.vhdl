@@ -303,15 +303,15 @@ architecture a_uc of uc is
 		
 	-----------------Carga de constante---------------------------------------------------------------------
 	---------Fetch
-	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
+	select_reg1 <= instrucao(12 downto 9) when (opcode = "0101" or opcode = "0101")
 		and estado = "00"
 		else "0000";
 		
 	---------Decode/Execute
-	in2_ula <= "0000000000"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '0' and estado = "01"
+	in2_ula <= "0000000000"&instrucao(6 downto 0) when opcode = "0101"  and instrucao(6) = '0' and estado = "01"
 		else "00000000000000000";
 	
-	in2_ula <= "1111111111"&instrucao(6 downto 0) when (opcode = "0101" or opcode = "0101") and instrucao(6) = '1' and estado = "01"
+	in2_ula <= "1111111111"&instrucao(6 downto 0) when opcode = "0101"  and instrucao(6) = '1' and estado = "01"
 		else "00000000000000000";
 		
 	select_ula <= "101" when opcode = "0101"
