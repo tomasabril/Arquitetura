@@ -319,7 +319,7 @@ architecture a_uc of uc is
 	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
 
 
-	-----------------Carga de constante---------------------------------------------------------------------
+	----------------- Carga de constante --------------------------------------------
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when opcode = "0101"
 		and estado = "00"
