@@ -195,204 +195,148 @@ architecture a_uc of uc is
 		else '0';
 
 
-	---------------------------------------Instruções------------------------
+	---------------- Instruções ------------------------
 
-	-------------Atualização do PC ou JUMP incondiconal-----------------------
+	------------- Atualização do PC ou JUMP incondiconal -------------------
 	pc_in <= --proxima instrução normal
 		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' and estado = "10"  else
 		--pulo incondicional
 		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
-		and opcode = "1010" and estado = "10"
-		else "0000000";
-	
-	------------Pulos Condicionais-----------------------------------------------
-	-- JMP caso menor
-		pc_in <= instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
-		and opcode = "1011" and estado = "10" and out_estado_pulo = "10"
-		else "0000000";
-	-- JMP caso igual
-		pc_in <= instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
-		and opcode = "1100" and estado = "10" and out_estado_pulo = "10"
+			and opcode = "1010" and estado = "10" else
+		--pulo caso menor
+		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
+			and opcode = "1011" and estado = "10"
+			and out_estado_pulo = "10" else
+		--pulo caso igual
+		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
+			and opcode = "1100" and estado = "10" and out_estado_pulo = "10"
 		else "0000000";
 
 
 
-	----------Soma e subtração entre registradores-------------------------------
-	---------Fetch
-	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
-		and estado = "00"
-		else "0000";
-	select_reg2 <= instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
-		and estado = "00"
-		else "0000";
-
-	---------Decode/Execute
-	in2_ula <= bancoreg_out2 when (opcode = "0001" or opcode = "0010")
-		and estado = "01"
-		else "00000000000000000";
-	select_ula <= "000" when opcode = "0001"
-		and estado = "01" else
-		"001" when opcode = "0010"
-		and estado = "01" 
-		else "000";
-	---------Write/Back
-	bancoreg_datain <= out_ula when (opcode = "0001" or opcode = "0010") 
-		and estado = "10"
-		else "00000000000000000";
-
-	sel_writereg <= instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
-		and estado = "10"
-		else "0000";
+	--------- Fetch --///////////////////////////////////////////
 	
-	wr_en_banco_reg17b <= '1' when (opcode = "0001" or opcode = "0010")
-		and estado = "10"
-		else '0';
+	select_reg1 <=
+		-- Soma e subtração entre registradores
+		instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
+			and estado = "00" else
+		--mover registradores
+		instrucao(12 downto 9) when opcode = "0011"
+			and estado = "00" and instrucao(8 downto 7) = "00" else
+		--Comparação de valor entre dois registradores
+		instrucao(12 downto 9) when opcode = "0100" and estado = "00" else
+		--Comparação de valor entre cosntante e registrador
+		instrucao(12 downto 9) when opcode = "1110" and estado = "00" else
+		--Carga de constante
+		instrucao(12 downto 9) when opcode = "0101" and estado = "00" else
+		-- Soma e subtração de constantes ao registrador
+		instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
+			and estado = "00"		
+		else "0000";
 
 
-	----Mover Registradores -----------------------------------------------
-	---------Fetch
-	select_reg1 <= instrucao(12 downto 9) when opcode = "0011"
-		and estado = "00" and instrucao(8 downto 7) = "00"
+	select_reg2 <=
+		-- Soma e subtração entre registradores
+		instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
+			and estado = "00" else
+		--mover registradores
+		instrucao(8 downto 5) when opcode = "0011" 
+			and estado = "00" and instrucao(8 downto 7) = "00" else
+		--Comparação de valor entre dois registradores
+		instrucao(8 downto 5) when opcode = "0100" and estado = "00"
 		else "0000";
-		
-	select_reg2 <= instrucao(8 downto 5) when opcode = "0011" 
-		and estado = "00" and instrucao(8 downto 7) = "00"
-		else "0000";
-		
-	---------Decode/Execute
-	--nada, o resultado já esta no registrador lido
+
+
+	--------- Decode/Execute ---///////////////////////////////
 	
-	---------Write/Back
-	wr_en_banco_reg17b <= '1' when opcode = "0011" and estado = "10"
-		else '0';
-	sel_writereg <= instrucao(12 downto 9) when opcode = "0011" and estado = "10"
-		else "0000";
-	bancoreg_datain <= bancoreg_out2 when opcode = "0011" and estado = "10"
+	in2_ula <= 
+		--Soma e subtração entre registradores
+		bancoreg_out2 when (opcode = "0001" or opcode = "0010")
+			and estado = "01" else
+		--Comparação de valor entre dois registradores
+		bancoreg_out2 when opcode = "0100" and estado = "01" else
+		--Comparação de valor entre cosntante e registrador
+		"0000000000"&instrucao(6 downto 0) when opcode = "1110" and estado = "01"
+			and instrucao(6) = '0' else
+		"1111111111"&instrucao(6 downto 0) when opcode = "1110" and estado = "01"
+			and instrucao(6) = '1' else
+		-- Carga de constante
+		"0000000000"&instrucao(6 downto 0) when opcode = "0101"
+			and instrucao(6) = '0' and estado = "01" else
+		"1111111111"&instrucao(6 downto 0) when opcode = "0101"
+			and instrucao(6) = '1' and estado = "01" else
+		-- Soma e subtração de constantes ao registrador
+		bancoreg_out2 when (opcode = "0110" or opcode = "0111")
+			and estado = "01"
 		else "00000000000000000";
 
-
-	------Comparação de valor entre dois registradores -----------------------------
-	---------Fetch
-	select_reg1 <= instrucao(12 downto 9) when opcode = "0100" and estado = "00"
-		else "0000";
-	select_reg2 <= instrucao(8 downto 5) when opcode = "0100" and estado = "00"
-		else "0000";
-
-	---------Decode/Execute
-	in2_ula <= bancoreg_out2 when opcode = "0100" and estado = "01"
-		else "00000000000000000";
-
-	select_ula <= "100" when opcode = "0100" and estado = "01"
-		else "000";
-
-	wr_en_estado_pulo <= '1' when opcode = "0100" and estado = "01"
-		else '0';
-
-
-	---------Write/Back
-	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
-	-- faltava o enable mas eu coloquei no decode/execute
-
-
-	---------------Comparação de valor entre cosntante e registrador---------------
-	---------Fetch
-	select_reg1 <= instrucao(12 downto 9) when opcode = "1110" and estado = "00"
-		else "0000";
-
-	---------Decode/Execute
-	in2_ula <= "0000000000"&instrucao(6 downto 0) when opcode = "1110" and estado = "01"
-		and instrucao(6) = '0'
-		else "00000000000000000";
-
-	in2_ula <= "1111111111"&instrucao(6 downto 0) when opcode = "1110" and estado = "01"
-		and instrucao(6) = '1'
-		else "00000000000000000";
-
-	select_ula <= "100" when opcode = "1110"
-		and estado = "01"
-		else "000";
-
-	wr_en_estado_pulo <= '1' when opcode = "1110" and estado = "01"
-		else '0';
-
-	---------Write/Back
-	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
-
-
-	----------------- Carga de constante --------------------------------------------
-	---------Fetch
-	select_reg1 <= instrucao(12 downto 9) when opcode = "0101"
-		and estado = "00"
-		else "0000";
-
-	---------Decode/Execute
-	in2_ula <= "0000000000"&instrucao(6 downto 0) when opcode = "0101"
-		and instrucao(6) = '0' and estado = "01"
-		else "00000000000000000";
-
-	in2_ula <= "1111111111"&instrucao(6 downto 0) when opcode = "0101"
-		and instrucao(6) = '1' and estado = "01"
-		else "00000000000000000";
-
-	select_ula <= "101" when opcode = "0101"
-		and estado = "01"
-		else "000";
-
-	---------Write/Back
-	bancoreg_datain <= out_ula when opcode = "0101" 
-		and estado = "10"
-		else "00000000000000000";
-
-	sel_writereg <= instrucao(12 downto 9) when opcode = "0101" 
-		and estado = "10"
-		else "0000";
-
-	wr_en_banco_reg17b <= '1' when opcode = "0101" 
-		and estado = "10"
-		else '0';
-
-
-	-----------------Soma e subtração de constantes ao registrador-------------------------------------------------
-	---------Fetch
-	select_reg1 <= instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
-		and estado = "00"
-		else "0000";
-
-	---------Decode/Execute
-	in2_ula <= bancoreg_out2 when (opcode = "0110" or opcode = "0111")
-		and estado = "01"
-		else "00000000000000000";
 
 	select_ula <=
+		-- Soma entre registradores
+		"000" when opcode = "0001" and estado = "01" else
+		-- subtração entre registradores
+		"001" when opcode = "0010" and estado = "01" else
+		--Comparação de valor entre dois registradores
+		"100" when opcode = "1110" and estado = "01" else
+		"100" when opcode = "0100" and estado = "01" else
+		-- Carga de constante
+		"101" when opcode = "0101" and estado = "01" else
+		-- Soma e subtração de constantes ao registrador
 		"000" when opcode = "0110" and estado = "01" else
 		"001" when opcode = "0111" and estado = "01"
 		else "000";
-
-	---------Write/Back
-	bancoreg_datain <= out_ula when (opcode = "0110" or opcode = "0111") 
-		and estado = "10"
+		
+	--------- Write/Back --/////////////////////////////////////
+	
+	bancoreg_datain <=
+		out_ula when (opcode = "0001" or opcode = "0010") 
+			and estado = "10" else
+		bancoreg_out2 when opcode = "0011" and estado = "10" else
+		-- Carga de constante
+		out_ula when opcode = "0101" and estado = "10" else
+		-- Soma e subtração de constantes ao registrador
+		out_ula when (opcode = "0110" or opcode = "0111") 
+			and estado = "10"		
 		else "00000000000000000";
 
-	sel_writereg <= instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
-		and estado = "10"
+
+	sel_writereg <=
+		instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
+			and estado = "10" else
+		instrucao(12 downto 9) when opcode = "0011"
+			and estado = "10" else
+		-- Carga de constante
+		instrucao(12 downto 9) when opcode = "0101" 
+			and estado = "10" else
+		-- Soma e subtração de constantes ao registrador
+		instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
+			and estado = "10"
 		else "0000";
 
-	wr_en_banco_reg17b <= '1' when (opcode = "0110" or opcode = "0111")
-		and estado = "10"
+
+	wr_en_banco_reg17b <=
+		'1' when (opcode = "0001" or opcode = "0010")
+			and estado = "10" else
+		'1' when opcode = "0011" and estado = "10" else		
+		-- Carga de constante
+		 '1' when opcode = "0101" and estado = "10" else
+		-- Soma e subtração de constantes ao registrador
+		'1' when (opcode = "0110" or opcode = "0111")
+			and estado = "10"
+		else '0';
+
+
+	wr_en_estado_pulo <=
+		--Comparação de valor entre dois registradores
+		'1' when opcode = "0100" and estado = "01" else
+		--Comparação de valor entre cosntante e registrador
+		'1' when opcode = "1110" and estado = "01"
 		else '0';
 
 	----------------- RAM -------------------------------------------------
 	wr_en_ram <= '0';
 
 end architecture;
-
-
-
-
-
-
-
-
 
 
 
