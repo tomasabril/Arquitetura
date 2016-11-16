@@ -9,7 +9,7 @@ entity uc is
 	port(
 		clk : in std_logic;
 		rst : in std_logic
-		);
+	);
 end entity;
 
 architecture a_uc of uc is
@@ -18,18 +18,18 @@ architecture a_uc of uc is
 	signal wr_en_pc, jmp_en, wr_en_estado_pulo, wr_en_banco_reg17b : std_logic;
 	signal instrucao : unsigned(16 downto 0);
 	signal opcode : unsigned(3 downto 0);
-	signal estado : unsigned(1 downto 0);	-- fetch, decode/execute, wr-b
+	signal estado : unsigned(1 downto 0);			-- fetch, decode/execute, wr-b
 	signal select_reg1, select_reg2 : unsigned(3 downto 0);
 	signal bancoreg_datain : unsigned(16 downto 0);
-	signal sel_writereg : unsigned(3 downto 0);	--Seleciona 1 dos registradores pra ser escrito
+	signal sel_writereg : unsigned(3 downto 0);		--Seleciona 1 dos registradores pra ser escrito
 	signal bancoreg_out1, bancoreg_out2 : unsigned(16 downto 0);
 	signal in2_ula : unsigned(16 downto 0);
 	signal select_ula : unsigned(2 downto 0);
 	signal out_ula : unsigned(16 downto 0);
 	signal in_estado_pulo, out_estado_pulo : unsigned(1 downto 0);
-	signal end_ram: unsigned (6 downto 0);
-	signal in_ram, out_ram: unsigned (16 downto 0);
-	signal wr_en_ram: std_logic;
+	signal end_ram : unsigned (6 downto 0);
+	signal in_ram, out_ram : unsigned (16 downto 0);
+	signal wr_en_ram : std_logic;
 
 	component pc is
 		port(
@@ -71,7 +71,7 @@ architecture a_uc of uc is
 			data_out : out unsigned(1 downto 0)
 			);
 	end component;
-	
+
 	component estado_pulo is
 		port(
 			clk      : in std_logic;
@@ -81,6 +81,7 @@ architecture a_uc of uc is
 			data_out : out unsigned (1 downto 0)
 		);
 	end component;
+
 	component ula is
 		port(
 			entrada0 : in unsigned(16 downto 0);
@@ -90,15 +91,15 @@ architecture a_uc of uc is
 			estado   : out unsigned(1 downto 0)
 		);
 	end component;
-	
+
 	component ram is
-		 port(
-				 clk : 		in std_logic;
-				 endereco:	in unsigned(6 downto 0);
-				 wr_en : 	in std_logic;
-				 dado_in:	in unsigned(16 downto 0);
-				 dado_out : out unsigned(16 downto 0)
-			);
+		port(
+			clk      :	in std_logic;
+			endereco :	in unsigned(6 downto 0);
+			wr_en    :	in std_logic;
+			dado_in  :	in unsigned(16 downto 0);
+			dado_out :	out unsigned(16 downto 0)
+		);
 	end component;
 
 	begin------------------------------------------------
@@ -148,12 +149,12 @@ architecture a_uc of uc is
 		);
 
 	ram0: ram port map (
-	 clk		=> clk,
-	 endereco	=>  end_ram,
-	 wr_en 		=> wr_en_ram,
-	 dado_in	=> in_ram,
-	 dado_out 	=> out_ram
-	);
+		clk		=> clk,
+		endereco	=> end_ram,
+		wr_en		=> wr_en_ram,
+		dado_in		=> in_ram,
+		dado_out	=> out_ram
+		);
 -------------------------------
 -- 00 fetch
 -- 01 decode/execute
@@ -162,22 +163,22 @@ architecture a_uc of uc is
 --lista de opcodes:
 --formato 1
 --0000 nop
---0001 soma entre registradores, resultado fica no primeiro			ok
---0010 subtracao entre registradores, rersultado fica no primeiro	ok
---0011 move de registrador para registrador                         ok	-- endereçamento = 00
---	   move constante para registrador ou ram dependendo da flag	Mudar para LW/SW	-- endereçamento = 01
---0100 comparacao                                                   ok
+--0001 soma entre registradores, resultado fica no primeiro
+--0010 subtracao entre registradores, rersultado fica no primeiro
+--0011 move de registrador para registrador    endereçamento = 00
+--move constante para registrador ou ram dependendo da flag	Mudar para LW/SW	-- endereçamento = 01
+--0100 comparacao
 
 --formato 2
---0101 carga de constante											ok
---0110 soma constante ao registrador								ok
---0111 Subtrai cosntante do registrador								ok
---1110 Comparação com constante 									ok
+--0101 carga de constante
+--0110 soma constante ao registrador
+--0111 Subtrai cosntante do registrador
+--1110 Comparação com constante
 
 --formato 3
---1010 Jump incondicional											ok
---1011 Jump se menor												ok
---1100 Jump caso igual												ok
+--1010 Jump incondicional
+--1011 Jump se menor
+--1100 Jump caso igual
 
 
 ------------------------------------
@@ -192,11 +193,11 @@ architecture a_uc of uc is
 	jmp_en <= '1' when (opcode = "1010" or opcode = "1011" or opcode = "1100")
 		and estado = "00"
 		else '0';
-		
-	
-	-------------------------------------------------Instruções-----------------------------------------------------------
 
-	-------------Atualização do PC ou JUMP incondiconal------------------------------------------------------------
+
+	---------------------------------------Instruções------------------------
+
+	-------------Atualização do PC ou JUMP incondiconal-----------------------
 	pc_in <= --proxima instrução normal
 		pc_out + 1 when wr_en_pc = '1' and jmp_en = '0' and estado = "10"  else
 		--pulo incondicional
@@ -204,7 +205,7 @@ architecture a_uc of uc is
 		and opcode = "1010" and estado = "10"
 		else "0000000";
 	
-	------------Pulos Condicionais-----------------------------------------------------------------------------------
+	------------Pulos Condicionais-----------------------------------------------
 	-- JMP caso menor
 		pc_in <= instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
 		and opcode = "1011" and estado = "10" and out_estado_pulo = "10"
@@ -216,7 +217,7 @@ architecture a_uc of uc is
 
 
 
-	----------Soma e subtração entre registradores--------------------------------------------------------------------
+	----------Soma e subtração entre registradores-------------------------------
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
 		and estado = "00"
@@ -224,7 +225,7 @@ architecture a_uc of uc is
 	select_reg2 <= instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
 		and estado = "00"
 		else "0000";
-	
+
 	---------Decode/Execute
 	in2_ula <= bancoreg_out2 when (opcode = "0001" or opcode = "0010")
 		and estado = "01"
@@ -246,9 +247,9 @@ architecture a_uc of uc is
 	wr_en_banco_reg17b <= '1' when (opcode = "0001" or opcode = "0010")
 		and estado = "10"
 		else '0';
-	
-	
-	----------------Mover Registradores----------------------------------------------------------------------------
+
+
+	----Mover Registradores -----------------------------------------------
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when opcode = "0011"
 		and estado = "00" and instrucao(8 downto 7) = "00"
@@ -262,93 +263,112 @@ architecture a_uc of uc is
 	--nada, o resultado já esta no registrador lido
 	
 	---------Write/Back
-	wr_en_banco_reg17b <= '1' when opcode = "0011" and estado = "10";
-	sel_writereg <= instrucao(12 downto 9) when opcode = "0011" and estado = "10"; 
-	bancoreg_datain <=  bancoreg_out2 when opcode = "0011" and estado = "10";
+	wr_en_banco_reg17b <= '1' when opcode = "0011" and estado = "10"
+		else '0';
+	sel_writereg <= instrucao(12 downto 9) when opcode = "0011" and estado = "10"
+		else "0000";
+	bancoreg_datain <= bancoreg_out2 when opcode = "0011" and estado = "10"
+		else "00000000000000000";
 
-	
-	---------------Comparação de valor entre dois registradores-------------------------------------------------------
+
+	------Comparação de valor entre dois registradores -----------------------------
 	---------Fetch
-	select_reg1 <= instrucao(12 downto 9) when opcode = "0100" and estado = "00" else "0000";
-	select_reg2 <= instrucao(8 downto 5) when opcode = "0100" and estado = "00"	 else "0000";
-		
+	select_reg1 <= instrucao(12 downto 9) when opcode = "0100" and estado = "00"
+		else "0000";
+	select_reg2 <= instrucao(8 downto 5) when opcode = "0100" and estado = "00"
+		else "0000";
+
 	---------Decode/Execute
-	in2_ula <= bancoreg_out2 when (opcode = "0100" or opcode = "0100")
-		and estado = "01" else "00000000000000000";
-		
-	select_ula <= "100" when opcode = "0100"
-		and estado = "01" else "000";
-		
+	in2_ula <= bancoreg_out2 when opcode = "0100" and estado = "01"
+		else "00000000000000000";
+
+	select_ula <= "100" when opcode = "0100" and estado = "01"
+		else "000";
+
+	wr_en_estado_pulo <= '1' when opcode = "0100" and estado = "01"
+		else '0';
+
+
 	---------Write/Back
 	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
-	
-	
-	---------------Comparação de valor entre cosntante e registrador--------------------------------------------------
+	-- faltava o enable mas eu coloquei no decode/execute
+
+
+	---------------Comparação de valor entre cosntante e registrador---------------
 	---------Fetch
-	select_reg1 <= instrucao(12 downto 9) when opcode = "1110" and estado = "00" else "0000";
-	
+	select_reg1 <= instrucao(12 downto 9) when opcode = "1110" and estado = "00"
+		else "0000";
+
 	---------Decode/Execute
-	in2_ula <= "0000000000"&instrucao(6 downto 0) when opcode = "1110"  and estado = "01"
+	in2_ula <= "0000000000"&instrucao(6 downto 0) when opcode = "1110" and estado = "01"
+		and instrucao(6) = '0'
 		else "00000000000000000";
-	
-	in2_ula <= "1111111111"&instrucao(6 downto 0) when opcode = "1110"  and  estado = "01"
+
+	in2_ula <= "1111111111"&instrucao(6 downto 0) when opcode = "1110" and estado = "01"
+		and instrucao(6) = '1'
 		else "00000000000000000";
-		
+
 	select_ula <= "100" when opcode = "1110"
-		and estado = "01" else "000";
-	
+		and estado = "01"
+		else "000";
+
+	wr_en_estado_pulo <= '1' when opcode = "1110" and estado = "01"
+		else '0';
+
 	---------Write/Back
 	-- Acho que nada, pois o in_estado_pulo já esta conectado com a ula e a maquina de estados no mapeamento.
 
-		
+
 	-----------------Carga de constante---------------------------------------------------------------------
 	---------Fetch
-	select_reg1 <= instrucao(12 downto 9) when (opcode = "0101" or opcode = "0101")
+	select_reg1 <= instrucao(12 downto 9) when opcode = "0101"
 		and estado = "00"
 		else "0000";
-		
+
 	---------Decode/Execute
-	in2_ula <= "0000000000"&instrucao(6 downto 0) when opcode = "0101"  and instrucao(6) = '0' and estado = "01"
+	in2_ula <= "0000000000"&instrucao(6 downto 0) when opcode = "0101"
+		and instrucao(6) = '0' and estado = "01"
 		else "00000000000000000";
-	
-	in2_ula <= "1111111111"&instrucao(6 downto 0) when opcode = "0101"  and instrucao(6) = '1' and estado = "01"
+
+	in2_ula <= "1111111111"&instrucao(6 downto 0) when opcode = "0101"
+		and instrucao(6) = '1' and estado = "01"
 		else "00000000000000000";
-		
+
 	select_ula <= "101" when opcode = "0101"
-		and estado = "01" else "000";
-	
+		and estado = "01"
+		else "000";
+
 	---------Write/Back
 	bancoreg_datain <= out_ula when opcode = "0101" 
 		and estado = "10"
 		else "00000000000000000";
-		
+
 	sel_writereg <= instrucao(12 downto 9) when opcode = "0101" 
 		and estado = "10"
 		else "0000";
-	
+
 	wr_en_banco_reg17b <= '1' when opcode = "0101" 
 		and estado = "10"
 		else '0';
-		
-		
+
+
 	-----------------Soma e subtração de constantes ao registrador-------------------------------------------------
 	---------Fetch
 	select_reg1 <= instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
 		and estado = "00"
 		else "0000";
-		
+
 	---------Decode/Execute
 	in2_ula <= bancoreg_out2 when (opcode = "0110" or opcode = "0111")
 		and estado = "01"
 		else "00000000000000000";
-		
-	select_ula <= "000" when opcode = "0110"
-		and estado = "01" else
-		"001" when opcode = "0111"
-		and estado = "01" 
+
+	select_ula <=
+		"000" when opcode = "0110" and estado = "01" else
+		"001" when opcode = "0111" and estado = "01"
 		else "000";
-		
-	---------Write/Back	
+
+	---------Write/Back
 	bancoreg_datain <= out_ula when (opcode = "0110" or opcode = "0111") 
 		and estado = "10"
 		else "00000000000000000";
@@ -356,15 +376,14 @@ architecture a_uc of uc is
 	sel_writereg <= instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
 		and estado = "10"
 		else "0000";
-	
+
 	wr_en_banco_reg17b <= '1' when (opcode = "0110" or opcode = "0111")
 		and estado = "10"
 		else '0';
-	
-	
-	
 
-	
+	----------------- RAM -------------------------------------------------
+	wr_en_ram <= '0';
+
 end architecture;
 
 

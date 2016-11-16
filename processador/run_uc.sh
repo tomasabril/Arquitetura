@@ -42,6 +42,10 @@ nome=uc
 rm ${nome}
 rm ${nome}_tb
 rm ${nome}_tb.ghw
+nome=ram
+rm ${nome}
+rm ${nome}_tb
+rm ${nome}_tb.ghw
 
 rm *.cf
 rm *.o
@@ -54,13 +58,13 @@ echo "compilando... ${nome} "
 tput sgr0
 ghdl -a ${nome}.vhdl
 ghdl -e ${nome}
-nome=pc		#########################
+nome=pc				#########################
 tput setaf 3
 echo "compilando... ${nome} "
 tput sgr0
 ghdl -a ${nome}.vhdl
 ghdl -e ${nome}
-nome=rom		#########################
+nome=rom			#########################
 tput setaf 3
 echo "compilando... ${nome} "
 tput sgr0
@@ -84,18 +88,25 @@ echo "compilando... ${nome} "
 tput sgr0
 ghdl -a ${nome}.vhdl
 ghdl -e ${nome}
-nome=ula		#########################
+nome=ula			#########################
 tput setaf 3
 echo "compilando... ${nome} "
 tput sgr0
 ghdl -a ${nome}.vhdl
 ghdl -e ${nome}
-nome=uc		#########################
+nome=ram			#########################
 tput setaf 3
 echo "compilando... ${nome} "
 tput sgr0
 ghdl -a ${nome}.vhdl
 ghdl -e ${nome}
+nome=uc				#########################
+tput setaf 3
+echo "compilando... ${nome} "
+tput sgr0
+ghdl -a ${nome}.vhdl
+ghdl -e ${nome}
+
 
 
 tput setaf 3
