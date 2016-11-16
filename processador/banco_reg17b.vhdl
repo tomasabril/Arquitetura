@@ -99,30 +99,27 @@ architecture a_banco_reg17b of banco_reg17b is
 
 		data_out0 <= "00000000000000000";
 
-		--reseta tudo
-		read_data1 <= "00000000000000000" when rst = '1';
-		read_data2 <= "00000000000000000" when rst = '1';
-
 		--liga o enable do registrador a ser escrito
 		wr_en_interno0 <= '1' when write_reg = "0000" and wr_en = '1'
-		else '0';
+				else '0';
 		wr_en_interno1 <= '1' when write_reg = "0001" and wr_en = '1'
-		else '0';
+				else '0';
 		wr_en_interno2 <= '1' when write_reg = "0010" and wr_en = '1'
-		else '0';
+				else '0';
 		wr_en_interno3 <= '1' when write_reg = "0011" and wr_en = '1'
-		else '0';
+				else '0';
 		wr_en_interno4 <= '1' when write_reg = "0100" and wr_en = '1'
-		else '0';
+				else '0';
 		wr_en_interno5 <= '1' when write_reg = "0101" and wr_en = '1'
-		else '0';
+				else '0';
 		wr_en_interno6 <= '1' when write_reg = "0110" and wr_en = '1'
-		else '0';
+				else '0';
 		wr_en_interno7 <= '1' when write_reg = "0111" and wr_en = '1'
-		else '0';
+				else '0';
 
 		--coloca valor do registrador na saida 1 com base no seletor read_reg1
 		read_data1 <=
+				"00000000000000000" when rst = '1' else
 				data_out0 when read_reg1 = "0000" else
 				data_out1 when read_reg1 = "0001" else
 				data_out2 when read_reg1 = "0010" else
@@ -134,15 +131,18 @@ architecture a_banco_reg17b of banco_reg17b is
 				else "00000000000000000";
 		--coloca valor do registrador na saida 2 com base no seletor read_reg2
 		read_data2 <=
-				data_out0 when read_reg1 = "0000" else
-				data_out1 when read_reg1 = "0001" else
-				data_out2 when read_reg1 = "0010" else
-				data_out3 when read_reg1 = "0011" else
-				data_out4 when read_reg1 = "0100" else
-				data_out5 when read_reg1 = "0101" else
-				data_out6 when read_reg1 = "0110" else
-				data_out7 when read_reg1 = "0111"
+				"00000000000000000" when rst = '1' else
+				data_out0 when read_reg2 = "0000" else
+				data_out1 when read_reg2 = "0001" else
+				data_out2 when read_reg2 = "0010" else
+				data_out3 when read_reg2 = "0011" else
+				data_out4 when read_reg2 = "0100" else
+				data_out5 when read_reg2 = "0101" else
+				data_out6 when read_reg2 = "0110" else
+				data_out7 when read_reg2 = "0111"
 				else "00000000000000000";
 
 end architecture;
+
+
 

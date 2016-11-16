@@ -56,54 +56,54 @@ architecture a_banco_reg17b_tb of banco_reg17b_tb is
 		rst <= '0';
 		wait for 100 ns;
 		
-		read_reg1 <= "001";	--le registradores, mas nao é pra ter nada por enquanto
-		read_reg2 <= "010";
+		read_reg1 <= "0001";	--le registradores, mas nao é pra ter nada por enquanto
+		read_reg2 <= "0010";
 		wait for 100 ns;
 
 		wr_en <= '0';		--tenta escrever mas wr_en está desablitado
-		write_reg <= "001";
+		write_reg <= "0001";
 		write_data <= "01111111111111100";
 		wait for 100 ns;
-		write_reg <= "010";
+		write_reg <= "0010";
 		write_data <= "10000000000000000";
 		wait for 100 ns;
 
 		wr_en <= '1';		--grava coisas nos registradores
-		write_reg <= "001";
+		write_reg <= "0001";
 		write_data <= "01111111111111100";
 		wait for 100 ns;
-		write_reg <= "010";
+		write_reg <= "0010";
 		write_data <= "10000000000000000";
 		wait for 100 ns;
-		write_reg <= "000";	--grava no registrador 0, entao nada acontece
+		write_reg <= "0000";	--grava no registrador 0, entao nada acontece
 		write_data <= "00000000000001000";
 		wait for 100 ns;
 		wr_en <= '0';
 
-		read_reg1 <= "000";	--le os valores escritos
+		read_reg1 <= "0000";	--le os valores escritos
 		wait for 100 ns;
-		read_reg2 <= "000";
+		read_reg2 <= "0000";
 		wait for 100 ns;
-		read_reg1 <= "001";
+		read_reg1 <= "0001";
 		wait for 100 ns;
-		read_reg2 <= "010";
+		read_reg2 <= "0010";
 		wait for 100 ns;
-		read_reg2 <= "011";
+		read_reg2 <= "0011";
 		wait for 100 ns;
 
 		wr_en <= '1';		--reescreve um valor diferente
-		write_reg <= "001";
+		write_reg <= "0001";
 		write_data <= "00000000000001100";
 		wait for 100 ns;
 		wr_en <= '0';
-		read_reg1 <= "001";
+		read_reg1 <= "0001";
 		wait for 100 ns;
 
 		rst <= '1';
 		wait for 100 ns;
 		rst <= '0';
 		wait for 100 ns;
-		read_reg1 <= "001";
+		read_reg1 <= "0001";
 		wait for 100 ns;
 
 		wait;

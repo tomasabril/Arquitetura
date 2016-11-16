@@ -1,0 +1,54 @@
+[*]
+[*] GTKWave Analyzer v3.3.62 (w)1999-2014 BSI
+[*] Wed Nov 16 21:57:04 2016
+[*]
+[dumpfile] "/home/pet/git/Arquitetura/processador/banco_reg17b_tb.ghw"
+[dumpfile_mtime] "Wed Nov 16 21:27:25 2016"
+[dumpfile_size] 7807
+[savefile] "/home/pet/git/Arquitetura/processador/banco_reg17b_tb_waves.gtkw"
+[timestart] 0
+[size] 1920 949
+[pos] -87 -87
+*-27.900242 60000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] top.
+[treeopen] top.banco_reg17b_tb.
+[treeopen] top.banco_reg17b_tb.uut.
+[sst_width] 218
+[signals_width] 196
+[sst_expanded] 1
+[sst_vpaned_height] 264
+@28
+top.banco_reg17b_tb.wr_en
+top.banco_reg17b_tb.rst
+top.banco_reg17b_tb.clk
+@22
+#{top.banco_reg17b_tb.read_data2[16:0]} top.banco_reg17b_tb.read_data2[16] top.banco_reg17b_tb.read_data2[15] top.banco_reg17b_tb.read_data2[14] top.banco_reg17b_tb.read_data2[13] top.banco_reg17b_tb.read_data2[12] top.banco_reg17b_tb.read_data2[11] top.banco_reg17b_tb.read_data2[10] top.banco_reg17b_tb.read_data2[9] top.banco_reg17b_tb.read_data2[8] top.banco_reg17b_tb.read_data2[7] top.banco_reg17b_tb.read_data2[6] top.banco_reg17b_tb.read_data2[5] top.banco_reg17b_tb.read_data2[4] top.banco_reg17b_tb.read_data2[3] top.banco_reg17b_tb.read_data2[2] top.banco_reg17b_tb.read_data2[1] top.banco_reg17b_tb.read_data2[0]
+#{top.banco_reg17b_tb.read_data1[16:0]} top.banco_reg17b_tb.read_data1[16] top.banco_reg17b_tb.read_data1[15] top.banco_reg17b_tb.read_data1[14] top.banco_reg17b_tb.read_data1[13] top.banco_reg17b_tb.read_data1[12] top.banco_reg17b_tb.read_data1[11] top.banco_reg17b_tb.read_data1[10] top.banco_reg17b_tb.read_data1[9] top.banco_reg17b_tb.read_data1[8] top.banco_reg17b_tb.read_data1[7] top.banco_reg17b_tb.read_data1[6] top.banco_reg17b_tb.read_data1[5] top.banco_reg17b_tb.read_data1[4] top.banco_reg17b_tb.read_data1[3] top.banco_reg17b_tb.read_data1[2] top.banco_reg17b_tb.read_data1[1] top.banco_reg17b_tb.read_data1[0]
+#{top.banco_reg17b_tb.write_data[16:0]} top.banco_reg17b_tb.write_data[16] top.banco_reg17b_tb.write_data[15] top.banco_reg17b_tb.write_data[14] top.banco_reg17b_tb.write_data[13] top.banco_reg17b_tb.write_data[12] top.banco_reg17b_tb.write_data[11] top.banco_reg17b_tb.write_data[10] top.banco_reg17b_tb.write_data[9] top.banco_reg17b_tb.write_data[8] top.banco_reg17b_tb.write_data[7] top.banco_reg17b_tb.write_data[6] top.banco_reg17b_tb.write_data[5] top.banco_reg17b_tb.write_data[4] top.banco_reg17b_tb.write_data[3] top.banco_reg17b_tb.write_data[2] top.banco_reg17b_tb.write_data[1] top.banco_reg17b_tb.write_data[0]
+@29
+#{top.banco_reg17b_tb.read_reg2[3:0]} top.banco_reg17b_tb.read_reg2[3] top.banco_reg17b_tb.read_reg2[2] top.banco_reg17b_tb.read_reg2[1] top.banco_reg17b_tb.read_reg2[0]
+@28
+#{top.banco_reg17b_tb.read_reg1[3:0]} top.banco_reg17b_tb.read_reg1[3] top.banco_reg17b_tb.read_reg1[2] top.banco_reg17b_tb.read_reg1[1] top.banco_reg17b_tb.read_reg1[0]
+@22
+#{top.banco_reg17b_tb.write_reg[3:0]} top.banco_reg17b_tb.write_reg[3] top.banco_reg17b_tb.write_reg[2] top.banco_reg17b_tb.write_reg[1] top.banco_reg17b_tb.write_reg[0]
+@28
+top.banco_reg17b_tb.uut.wr_en_interno8
+top.banco_reg17b_tb.uut.wr_en_interno7
+top.banco_reg17b_tb.uut.wr_en_interno6
+top.banco_reg17b_tb.uut.wr_en_interno5
+top.banco_reg17b_tb.uut.wr_en_interno4
+top.banco_reg17b_tb.uut.wr_en_interno3
+top.banco_reg17b_tb.uut.wr_en_interno2
+top.banco_reg17b_tb.uut.wr_en_interno1
+top.banco_reg17b_tb.uut.wr_en_interno0
+@22
+#{top.banco_reg17b_tb.uut.data_out7[16:0]} top.banco_reg17b_tb.uut.data_out7[16] top.banco_reg17b_tb.uut.data_out7[15] top.banco_reg17b_tb.uut.data_out7[14] top.banco_reg17b_tb.uut.data_out7[13] top.banco_reg17b_tb.uut.data_out7[12] top.banco_reg17b_tb.uut.data_out7[11] top.banco_reg17b_tb.uut.data_out7[10] top.banco_reg17b_tb.uut.data_out7[9] top.banco_reg17b_tb.uut.data_out7[8] top.banco_reg17b_tb.uut.data_out7[7] top.banco_reg17b_tb.uut.data_out7[6] top.banco_reg17b_tb.uut.data_out7[5] top.banco_reg17b_tb.uut.data_out7[4] top.banco_reg17b_tb.uut.data_out7[3] top.banco_reg17b_tb.uut.data_out7[2] top.banco_reg17b_tb.uut.data_out7[1] top.banco_reg17b_tb.uut.data_out7[0]
+#{top.banco_reg17b_tb.uut.data_out6[16:0]} top.banco_reg17b_tb.uut.data_out6[16] top.banco_reg17b_tb.uut.data_out6[15] top.banco_reg17b_tb.uut.data_out6[14] top.banco_reg17b_tb.uut.data_out6[13] top.banco_reg17b_tb.uut.data_out6[12] top.banco_reg17b_tb.uut.data_out6[11] top.banco_reg17b_tb.uut.data_out6[10] top.banco_reg17b_tb.uut.data_out6[9] top.banco_reg17b_tb.uut.data_out6[8] top.banco_reg17b_tb.uut.data_out6[7] top.banco_reg17b_tb.uut.data_out6[6] top.banco_reg17b_tb.uut.data_out6[5] top.banco_reg17b_tb.uut.data_out6[4] top.banco_reg17b_tb.uut.data_out6[3] top.banco_reg17b_tb.uut.data_out6[2] top.banco_reg17b_tb.uut.data_out6[1] top.banco_reg17b_tb.uut.data_out6[0]
+#{top.banco_reg17b_tb.uut.data_out5[16:0]} top.banco_reg17b_tb.uut.data_out5[16] top.banco_reg17b_tb.uut.data_out5[15] top.banco_reg17b_tb.uut.data_out5[14] top.banco_reg17b_tb.uut.data_out5[13] top.banco_reg17b_tb.uut.data_out5[12] top.banco_reg17b_tb.uut.data_out5[11] top.banco_reg17b_tb.uut.data_out5[10] top.banco_reg17b_tb.uut.data_out5[9] top.banco_reg17b_tb.uut.data_out5[8] top.banco_reg17b_tb.uut.data_out5[7] top.banco_reg17b_tb.uut.data_out5[6] top.banco_reg17b_tb.uut.data_out5[5] top.banco_reg17b_tb.uut.data_out5[4] top.banco_reg17b_tb.uut.data_out5[3] top.banco_reg17b_tb.uut.data_out5[2] top.banco_reg17b_tb.uut.data_out5[1] top.banco_reg17b_tb.uut.data_out5[0]
+#{top.banco_reg17b_tb.uut.data_out4[16:0]} top.banco_reg17b_tb.uut.data_out4[16] top.banco_reg17b_tb.uut.data_out4[15] top.banco_reg17b_tb.uut.data_out4[14] top.banco_reg17b_tb.uut.data_out4[13] top.banco_reg17b_tb.uut.data_out4[12] top.banco_reg17b_tb.uut.data_out4[11] top.banco_reg17b_tb.uut.data_out4[10] top.banco_reg17b_tb.uut.data_out4[9] top.banco_reg17b_tb.uut.data_out4[8] top.banco_reg17b_tb.uut.data_out4[7] top.banco_reg17b_tb.uut.data_out4[6] top.banco_reg17b_tb.uut.data_out4[5] top.banco_reg17b_tb.uut.data_out4[4] top.banco_reg17b_tb.uut.data_out4[3] top.banco_reg17b_tb.uut.data_out4[2] top.banco_reg17b_tb.uut.data_out4[1] top.banco_reg17b_tb.uut.data_out4[0]
+#{top.banco_reg17b_tb.uut.data_out3[16:0]} top.banco_reg17b_tb.uut.data_out3[16] top.banco_reg17b_tb.uut.data_out3[15] top.banco_reg17b_tb.uut.data_out3[14] top.banco_reg17b_tb.uut.data_out3[13] top.banco_reg17b_tb.uut.data_out3[12] top.banco_reg17b_tb.uut.data_out3[11] top.banco_reg17b_tb.uut.data_out3[10] top.banco_reg17b_tb.uut.data_out3[9] top.banco_reg17b_tb.uut.data_out3[8] top.banco_reg17b_tb.uut.data_out3[7] top.banco_reg17b_tb.uut.data_out3[6] top.banco_reg17b_tb.uut.data_out3[5] top.banco_reg17b_tb.uut.data_out3[4] top.banco_reg17b_tb.uut.data_out3[3] top.banco_reg17b_tb.uut.data_out3[2] top.banco_reg17b_tb.uut.data_out3[1] top.banco_reg17b_tb.uut.data_out3[0]
+#{top.banco_reg17b_tb.uut.data_out2[16:0]} top.banco_reg17b_tb.uut.data_out2[16] top.banco_reg17b_tb.uut.data_out2[15] top.banco_reg17b_tb.uut.data_out2[14] top.banco_reg17b_tb.uut.data_out2[13] top.banco_reg17b_tb.uut.data_out2[12] top.banco_reg17b_tb.uut.data_out2[11] top.banco_reg17b_tb.uut.data_out2[10] top.banco_reg17b_tb.uut.data_out2[9] top.banco_reg17b_tb.uut.data_out2[8] top.banco_reg17b_tb.uut.data_out2[7] top.banco_reg17b_tb.uut.data_out2[6] top.banco_reg17b_tb.uut.data_out2[5] top.banco_reg17b_tb.uut.data_out2[4] top.banco_reg17b_tb.uut.data_out2[3] top.banco_reg17b_tb.uut.data_out2[2] top.banco_reg17b_tb.uut.data_out2[1] top.banco_reg17b_tb.uut.data_out2[0]
+#{top.banco_reg17b_tb.uut.data_out1[16:0]} top.banco_reg17b_tb.uut.data_out1[16] top.banco_reg17b_tb.uut.data_out1[15] top.banco_reg17b_tb.uut.data_out1[14] top.banco_reg17b_tb.uut.data_out1[13] top.banco_reg17b_tb.uut.data_out1[12] top.banco_reg17b_tb.uut.data_out1[11] top.banco_reg17b_tb.uut.data_out1[10] top.banco_reg17b_tb.uut.data_out1[9] top.banco_reg17b_tb.uut.data_out1[8] top.banco_reg17b_tb.uut.data_out1[7] top.banco_reg17b_tb.uut.data_out1[6] top.banco_reg17b_tb.uut.data_out1[5] top.banco_reg17b_tb.uut.data_out1[4] top.banco_reg17b_tb.uut.data_out1[3] top.banco_reg17b_tb.uut.data_out1[2] top.banco_reg17b_tb.uut.data_out1[1] top.banco_reg17b_tb.uut.data_out1[0]
+#{top.banco_reg17b_tb.uut.data_out0[16:0]} top.banco_reg17b_tb.uut.data_out0[16] top.banco_reg17b_tb.uut.data_out0[15] top.banco_reg17b_tb.uut.data_out0[14] top.banco_reg17b_tb.uut.data_out0[13] top.banco_reg17b_tb.uut.data_out0[12] top.banco_reg17b_tb.uut.data_out0[11] top.banco_reg17b_tb.uut.data_out0[10] top.banco_reg17b_tb.uut.data_out0[9] top.banco_reg17b_tb.uut.data_out0[8] top.banco_reg17b_tb.uut.data_out0[7] top.banco_reg17b_tb.uut.data_out0[6] top.banco_reg17b_tb.uut.data_out0[5] top.banco_reg17b_tb.uut.data_out0[4] top.banco_reg17b_tb.uut.data_out0[3] top.banco_reg17b_tb.uut.data_out0[2] top.banco_reg17b_tb.uut.data_out0[1] top.banco_reg17b_tb.uut.data_out0[0]
+[pattern_trace] 1
+[pattern_trace] 0
