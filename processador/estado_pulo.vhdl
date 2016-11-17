@@ -9,7 +9,7 @@ use ieee.numeric_std.all;
 -- 00: os dois são iguais
 -- 01: maior
 -- 10: menor
--- 
+--
 
 
 entity estado_pulo is
@@ -39,4 +39,6 @@ begin
 
 	data_out <= registro;		--escreve o valor guardado na saida
 end architecture;
+
+
 
