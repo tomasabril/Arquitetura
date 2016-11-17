@@ -229,7 +229,7 @@ architecture a_uc of uc is
 		--mover registradores
 		instrucao(12 downto 9) when opcode = "0011"
 			and (estado = "00" or estado = "01")
-			and instrucao(8 downto 7) = "00" else
+			else
 		--Comparação de valor entre dois registradores
 		instrucao(12 downto 9) when opcode = "0100"
 			and (estado = "00" or estado = "01") else
@@ -252,7 +252,7 @@ architecture a_uc of uc is
 		--mover registradores
 		instrucao(8 downto 5) when opcode = "0011" 
 			and (estado = "00" or estado = "01")
-			and instrucao(8 downto 7) = "00" else
+			else
 		--Comparação de valor entre dois registradores
 		instrucao(8 downto 5) when opcode = "0100" and (estado = "00" or estado = "01")
 		else "0000";

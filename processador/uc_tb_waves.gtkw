@@ -1,14 +1,14 @@
 [*]
 [*] GTKWave Analyzer v3.3.62 (w)1999-2014 BSI
-[*] Thu Nov 17 18:50:32 2016
+[*] Thu Nov 17 19:11:38 2016
 [*]
 [dumpfile] "/home/pet/git/Arquitetura/processador/uc_tb.ghw"
-[dumpfile_mtime] "Thu Nov 17 18:49:33 2016"
-[dumpfile_size] 114587
+[dumpfile_mtime] "Thu Nov 17 19:11:22 2016"
+[dumpfile_size] 100468
 [savefile] "/home/pet/git/Arquitetura/processador/uc_tb_waves.gtkw"
 [timestart] 38453000000
 [size] 1920 949
-[pos] -1 -1
+[pos] -87 -87
 *-28.042957 405000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.uc_tb.
