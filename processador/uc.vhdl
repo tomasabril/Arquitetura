@@ -184,9 +184,8 @@ architecture a_uc of uc is
 ------------------------------------
 
 	-- Vê o Opcode da instrução
-	opcode <= instrucao(16 downto 13) when estado = "00"
-		else "0000";
-	
+	opcode <= instrucao(16 downto 13);
+
 	-- Enables do JMP
 	wr_en_pc <= '1' when estado = "10" else '0';
 
@@ -289,14 +288,17 @@ architecture a_uc of uc is
 	--------- Write/Back --/////////////////////////////////////
 	
 	bancoreg_datain <=
-		out_ula when (opcode = "0001" or opcode = "0010") 
+		out_ula when (opcode = "0001" or opcode = "0010")
 			and estado = "10" else
 		bancoreg_out2 when opcode = "0011" and estado = "10" else
 		-- Carga de constante
-		out_ula when opcode = "0101" and estado = "10" else
+		"00000000"&instrucao(8 downto 0) when opcode = "0101" and estado = "10"
+			and instrucao(8) = '0' else
+		"11111111"&instrucao(8 downto 0) when opcode = "0101" and estado = "10"
+			and instrucao(8) = '1' else
 		-- Soma e subtração de constantes ao registrador
-		out_ula when (opcode = "0110" or opcode = "0111") 
-			and estado = "10"		
+		out_ula when (opcode = "0110" or opcode = "0111")
+			and estado = "10"
 		else "00000000000000000";
 
 
@@ -319,7 +321,7 @@ architecture a_uc of uc is
 			and estado = "10" else
 		'1' when opcode = "0011" and estado = "10" else		
 		-- Carga de constante
-		 '1' when opcode = "0101" and estado = "10" else
+		'1' when opcode = "0101" and estado = "10" else
 		-- Soma e subtração de constantes ao registrador
 		'1' when (opcode = "0110" or opcode = "0111")
 			and estado = "10"

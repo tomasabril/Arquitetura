@@ -15,7 +15,7 @@ architecture a_rom of rom is
 	type mem is array (0 to 127) of unsigned(16 downto 0);
 	constant conteudo_rom : mem := (
 			-- caso endereco => conteudo
-			0  => "01010011000000000",	-- CAC R3,0
+			0  => "01010011000000001",	-- CAC R3,0
 --			1  => "01010100000000000",	-- CAC R4,0
 --			2  => "00010100001100000",	-- ADD R4,R3
 --			3  => "01110011000000001",	-- ADD R3, 1
