@@ -1,14 +1,14 @@
 [*]
 [*] GTKWave Analyzer v3.3.62 (w)1999-2014 BSI
-[*] Thu Nov 17 17:29:14 2016
+[*] Thu Nov 17 18:50:32 2016
 [*]
 [dumpfile] "/home/pet/git/Arquitetura/processador/uc_tb.ghw"
-[dumpfile_mtime] "Thu Nov 17 17:27:11 2016"
-[dumpfile_size] 19497
+[dumpfile_mtime] "Thu Nov 17 18:49:33 2016"
+[dumpfile_size] 114587
 [savefile] "/home/pet/git/Arquitetura/processador/uc_tb_waves.gtkw"
-[timestart] 374000000
+[timestart] 38453000000
 [size] 1920 949
-[pos] -48 -48
+[pos] -1 -1
 *-28.042957 405000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.uc_tb.
@@ -32,9 +32,8 @@ top.uc_tb.utt.wr_en_pc
 #{top.uc_tb.utt.out_ula[16:0]} top.uc_tb.utt.out_ula[16] top.uc_tb.utt.out_ula[15] top.uc_tb.utt.out_ula[14] top.uc_tb.utt.out_ula[13] top.uc_tb.utt.out_ula[12] top.uc_tb.utt.out_ula[11] top.uc_tb.utt.out_ula[10] top.uc_tb.utt.out_ula[9] top.uc_tb.utt.out_ula[8] top.uc_tb.utt.out_ula[7] top.uc_tb.utt.out_ula[6] top.uc_tb.utt.out_ula[5] top.uc_tb.utt.out_ula[4] top.uc_tb.utt.out_ula[3] top.uc_tb.utt.out_ula[2] top.uc_tb.utt.out_ula[1] top.uc_tb.utt.out_ula[0]
 @28
 #{top.uc_tb.utt.select_ula[2:0]} top.uc_tb.utt.select_ula[2] top.uc_tb.utt.select_ula[1] top.uc_tb.utt.select_ula[0]
-@23
-#{top.uc_tb.utt.in2_ula[16:0]} top.uc_tb.utt.in2_ula[16] top.uc_tb.utt.in2_ula[15] top.uc_tb.utt.in2_ula[14] top.uc_tb.utt.in2_ula[13] top.uc_tb.utt.in2_ula[12] top.uc_tb.utt.in2_ula[11] top.uc_tb.utt.in2_ula[10] top.uc_tb.utt.in2_ula[9] top.uc_tb.utt.in2_ula[8] top.uc_tb.utt.in2_ula[7] top.uc_tb.utt.in2_ula[6] top.uc_tb.utt.in2_ula[5] top.uc_tb.utt.in2_ula[4] top.uc_tb.utt.in2_ula[3] top.uc_tb.utt.in2_ula[2] top.uc_tb.utt.in2_ula[1] top.uc_tb.utt.in2_ula[0]
 @22
+#{top.uc_tb.utt.in2_ula[16:0]} top.uc_tb.utt.in2_ula[16] top.uc_tb.utt.in2_ula[15] top.uc_tb.utt.in2_ula[14] top.uc_tb.utt.in2_ula[13] top.uc_tb.utt.in2_ula[12] top.uc_tb.utt.in2_ula[11] top.uc_tb.utt.in2_ula[10] top.uc_tb.utt.in2_ula[9] top.uc_tb.utt.in2_ula[8] top.uc_tb.utt.in2_ula[7] top.uc_tb.utt.in2_ula[6] top.uc_tb.utt.in2_ula[5] top.uc_tb.utt.in2_ula[4] top.uc_tb.utt.in2_ula[3] top.uc_tb.utt.in2_ula[2] top.uc_tb.utt.in2_ula[1] top.uc_tb.utt.in2_ula[0]
 #{top.uc_tb.utt.bancoreg_out2[16:0]} top.uc_tb.utt.bancoreg_out2[16] top.uc_tb.utt.bancoreg_out2[15] top.uc_tb.utt.bancoreg_out2[14] top.uc_tb.utt.bancoreg_out2[13] top.uc_tb.utt.bancoreg_out2[12] top.uc_tb.utt.bancoreg_out2[11] top.uc_tb.utt.bancoreg_out2[10] top.uc_tb.utt.bancoreg_out2[9] top.uc_tb.utt.bancoreg_out2[8] top.uc_tb.utt.bancoreg_out2[7] top.uc_tb.utt.bancoreg_out2[6] top.uc_tb.utt.bancoreg_out2[5] top.uc_tb.utt.bancoreg_out2[4] top.uc_tb.utt.bancoreg_out2[3] top.uc_tb.utt.bancoreg_out2[2] top.uc_tb.utt.bancoreg_out2[1] top.uc_tb.utt.bancoreg_out2[0]
 #{top.uc_tb.utt.bancoreg_out1[16:0]} top.uc_tb.utt.bancoreg_out1[16] top.uc_tb.utt.bancoreg_out1[15] top.uc_tb.utt.bancoreg_out1[14] top.uc_tb.utt.bancoreg_out1[13] top.uc_tb.utt.bancoreg_out1[12] top.uc_tb.utt.bancoreg_out1[11] top.uc_tb.utt.bancoreg_out1[10] top.uc_tb.utt.bancoreg_out1[9] top.uc_tb.utt.bancoreg_out1[8] top.uc_tb.utt.bancoreg_out1[7] top.uc_tb.utt.bancoreg_out1[6] top.uc_tb.utt.bancoreg_out1[5] top.uc_tb.utt.bancoreg_out1[4] top.uc_tb.utt.bancoreg_out1[3] top.uc_tb.utt.bancoreg_out1[2] top.uc_tb.utt.bancoreg_out1[1] top.uc_tb.utt.bancoreg_out1[0]
 #{top.uc_tb.utt.sel_writereg[3:0]} top.uc_tb.utt.sel_writereg[3] top.uc_tb.utt.sel_writereg[2] top.uc_tb.utt.sel_writereg[1] top.uc_tb.utt.sel_writereg[0]
@@ -47,7 +46,9 @@ top.uc_tb.utt.wr_en_pc
 #{top.uc_tb.utt.instrucao[16:0]} top.uc_tb.utt.instrucao[16] top.uc_tb.utt.instrucao[15] top.uc_tb.utt.instrucao[14] top.uc_tb.utt.instrucao[13] top.uc_tb.utt.instrucao[12] top.uc_tb.utt.instrucao[11] top.uc_tb.utt.instrucao[10] top.uc_tb.utt.instrucao[9] top.uc_tb.utt.instrucao[8] top.uc_tb.utt.instrucao[7] top.uc_tb.utt.instrucao[6] top.uc_tb.utt.instrucao[5] top.uc_tb.utt.instrucao[4] top.uc_tb.utt.instrucao[3] top.uc_tb.utt.instrucao[2] top.uc_tb.utt.instrucao[1] top.uc_tb.utt.instrucao[0]
 @22
 #{top.uc_tb.utt.pc_in[6:0]} top.uc_tb.utt.pc_in[6] top.uc_tb.utt.pc_in[5] top.uc_tb.utt.pc_in[4] top.uc_tb.utt.pc_in[3] top.uc_tb.utt.pc_in[2] top.uc_tb.utt.pc_in[1] top.uc_tb.utt.pc_in[0]
+@25
 #{top.uc_tb.utt.pc_out[6:0]} top.uc_tb.utt.pc_out[6] top.uc_tb.utt.pc_out[5] top.uc_tb.utt.pc_out[4] top.uc_tb.utt.pc_out[3] top.uc_tb.utt.pc_out[2] top.uc_tb.utt.pc_out[1] top.uc_tb.utt.pc_out[0]
+@24
 #{top.uc_tb.utt.banco_reg17b0.data_out3[16:0]} top.uc_tb.utt.banco_reg17b0.data_out3[16] top.uc_tb.utt.banco_reg17b0.data_out3[15] top.uc_tb.utt.banco_reg17b0.data_out3[14] top.uc_tb.utt.banco_reg17b0.data_out3[13] top.uc_tb.utt.banco_reg17b0.data_out3[12] top.uc_tb.utt.banco_reg17b0.data_out3[11] top.uc_tb.utt.banco_reg17b0.data_out3[10] top.uc_tb.utt.banco_reg17b0.data_out3[9] top.uc_tb.utt.banco_reg17b0.data_out3[8] top.uc_tb.utt.banco_reg17b0.data_out3[7] top.uc_tb.utt.banco_reg17b0.data_out3[6] top.uc_tb.utt.banco_reg17b0.data_out3[5] top.uc_tb.utt.banco_reg17b0.data_out3[4] top.uc_tb.utt.banco_reg17b0.data_out3[3] top.uc_tb.utt.banco_reg17b0.data_out3[2] top.uc_tb.utt.banco_reg17b0.data_out3[1] top.uc_tb.utt.banco_reg17b0.data_out3[0]
 [pattern_trace] 1
 [pattern_trace] 0

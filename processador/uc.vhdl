@@ -188,10 +188,10 @@ architecture a_uc of uc is
 	opcode <= instrucao(16 downto 13);
 
 	-- Enables do JMP
-	wr_en_pc <= '1' when estado = "10" else '0';
+	wr_en_pc <= '1' when estado = "10"
+		else '0';
 
 	jmp_en <= '1' when (opcode = "1010" or opcode = "1011" or opcode = "1100")
-		and estado = "00"
 		else '0';
 
 
@@ -207,9 +207,15 @@ architecture a_uc of uc is
 		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
 			and opcode = "1011" and estado = "10"
 			and out_estado_pulo = "10" else
+		pc_out + 1 when wr_en_pc = '1' and jmp_en = '1'
+			and opcode = "1011" and estado = "10"
+			and out_estado_pulo /= "10" else
 		--pulo caso igual
 		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
-			and opcode = "1100" and estado = "10" and out_estado_pulo = "10"
+			and opcode = "1100" and estado = "00" and out_estado_pulo = "00" else
+		pc_out + 1 when wr_en_pc = '1' and jmp_en = '1'
+			and opcode = "1100" and estado = "10"
+			and out_estado_pulo /= "00"
 		else "0000000";
 
 

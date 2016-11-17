@@ -116,7 +116,7 @@ tput sgr0
 ghdl -a ${nome}_tb.vhdl
 ghdl -e ${nome}_tb
 
-ghdl -r ${nome}_tb --stop-time=30000ns --wave=${nome}_tb.ghw
+ghdl -r ${nome}_tb --stop-time=300000ns --wave=${nome}_tb.ghw
 
 tput setaf 3
 echo "terminado "
