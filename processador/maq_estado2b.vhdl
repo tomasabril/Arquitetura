@@ -16,14 +16,14 @@ architecture a_maq_estado2b of maq_estado2b is
 	signal estado : unsigned(1 downto 0);	--valor guardado pelo registrador
 begin
 -- 00 fetch
--- 01 decode
--- 10 execute
+-- 01 decode/execute
+-- 10 write back
 	process(clk,rst)
 	begin
 		if rst='1' then
 			estado <= "00";
 		elsif rising_edge(clk) then
-			if estado="10" then -- se agora esta em 2
+			if estado="11" then -- se agora esta em 3
 				estado <= "00"; -- o prox vai voltar ao zero
 			else
 				estado <= estado+1; -- senao avanca

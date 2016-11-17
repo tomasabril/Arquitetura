@@ -159,6 +159,7 @@ architecture a_uc of uc is
 -- 00 fetch
 -- 01 decode/execute
 -- 10 write back
+-- 11 read rom
 
 --lista de opcodes:
 --formato 1
@@ -218,31 +219,36 @@ architecture a_uc of uc is
 	select_reg1 <=
 		-- Soma e subtração entre registradores
 		instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
-			and estado = "00" else
+			and (estado = "00" or estado = "01") else
 		--mover registradores
 		instrucao(12 downto 9) when opcode = "0011"
-			and estado = "00" and instrucao(8 downto 7) = "00" else
+			and (estado = "00" or estado = "01")
+			and instrucao(8 downto 7) = "00" else
 		--Comparação de valor entre dois registradores
-		instrucao(12 downto 9) when opcode = "0100" and estado = "00" else
+		instrucao(12 downto 9) when opcode = "0100"
+			and (estado = "00" or estado = "01") else
 		--Comparação de valor entre cosntante e registrador
-		instrucao(12 downto 9) when opcode = "1110" and estado = "00" else
+		instrucao(12 downto 9) when opcode = "1110"
+			and (estado = "00" or estado = "01") else
 		--Carga de constante
-		instrucao(12 downto 9) when opcode = "0101" and estado = "00" else
+		instrucao(12 downto 9) when opcode = "0101"
+			and (estado = "00" or estado = "01") else
 		-- Soma e subtração de constantes ao registrador
 		instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
-			and estado = "00"		
+			and (estado = "00" or estado = "01")
 		else "0000";
 
 
 	select_reg2 <=
 		-- Soma e subtração entre registradores
 		instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
-			and estado = "00" else
+			and (estado = "00" or estado = "01") else
 		--mover registradores
 		instrucao(8 downto 5) when opcode = "0011" 
-			and estado = "00" and instrucao(8 downto 7) = "00" else
+			and (estado = "00" or estado = "01")
+			and instrucao(8 downto 7) = "00" else
 		--Comparação de valor entre dois registradores
-		instrucao(8 downto 5) when opcode = "0100" and estado = "00"
+		instrucao(8 downto 5) when opcode = "0100" and (estado = "00" or estado = "01")
 		else "0000";
 
 
@@ -289,42 +295,45 @@ architecture a_uc of uc is
 	
 	bancoreg_datain <=
 		out_ula when (opcode = "0001" or opcode = "0010")
-			and estado = "10" else
-		bancoreg_out2 when opcode = "0011" and estado = "10" else
+			and (estado = "10" or estado = "01") else
+		bancoreg_out2 when opcode = "0011"
+			and (estado = "10" or estado = "01") else
 		-- Carga de constante
-		"00000000"&instrucao(8 downto 0) when opcode = "0101" and estado = "10"
+		"00000000"&instrucao(8 downto 0) when opcode = "0101"
+			and (estado = "10" or estado = "01")
 			and instrucao(8) = '0' else
-		"11111111"&instrucao(8 downto 0) when opcode = "0101" and estado = "10"
+		"11111111"&instrucao(8 downto 0) when opcode = "0101"
+			and (estado = "10" or estado = "01")
 			and instrucao(8) = '1' else
 		-- Soma e subtração de constantes ao registrador
 		out_ula when (opcode = "0110" or opcode = "0111")
-			and estado = "10"
+			and (estado = "10" or estado = "01")
 		else "00000000000000000";
 
 
 	sel_writereg <=
 		instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
-			and estado = "10" else
+			and (estado = "10" or estado = "01") else
 		instrucao(12 downto 9) when opcode = "0011"
-			and estado = "10" else
+			and (estado = "10" or estado = "01") else
 		-- Carga de constante
 		instrucao(12 downto 9) when opcode = "0101" 
-			and estado = "10" else
+			and (estado = "10" or estado = "01") else
 		-- Soma e subtração de constantes ao registrador
 		instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
-			and estado = "10"
+			and (estado = "10" or estado = "01")
 		else "0000";
 
 
 	wr_en_banco_reg17b <=
 		'1' when (opcode = "0001" or opcode = "0010")
-			and estado = "10" else
-		'1' when opcode = "0011" and estado = "10" else		
+			and estado = "01" else
+		'1' when opcode = "0011" and estado = "01" else
 		-- Carga de constante
-		'1' when opcode = "0101" and estado = "10" else
+		'1' when opcode = "0101" and estado = "01" else
 		-- Soma e subtração de constantes ao registrador
 		'1' when (opcode = "0110" or opcode = "0111")
-			and estado = "10"
+			and estado = "01"
 		else '0';
 
 
