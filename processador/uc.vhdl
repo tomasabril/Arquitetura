@@ -271,8 +271,10 @@ architecture a_uc of uc is
 		"1111111111"&instrucao(6 downto 0) when opcode = "0101"
 			and instrucao(6) = '1' and estado = "01" else
 		-- Soma e subtração de constantes ao registrador
-		bancoreg_out2 when (opcode = "0110" or opcode = "0111")
-			and estado = "01"
+		"0000000000"&instrucao(6 downto 0) when (opcode = "0110" or opcode = "0111")
+			and instrucao(6) = '0' and estado = "01" else
+		"1111111111"&instrucao(6 downto 0) when (opcode = "0110" or opcode = "0111")
+			and instrucao(6) = '1' and estado = "01"
 		else "00000000000000000";
 
 
