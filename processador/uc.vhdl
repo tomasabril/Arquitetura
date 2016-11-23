@@ -177,10 +177,12 @@ architecture a_uc of uc is
 --1110 Comparação com constante
 
 --formato 3
---1010 Jump incondicional
---1011 Jump se menor
---1100 Jump caso igual
+--1010 Jump incondicional	--pula para endereco absoluto
+--1011 Jump se menor		--pula para endereco relativo ao atual
+--1100 Jump caso igual		--pula para endereco relativo ao atual
 
+-- bit 12 do formato 3 indica se ele vai pular para um endereco com valor maior que o atual ou anterior
+-- 1 soma com o pc_ou atual / 0 subtrai do pc_out atual
 
 ------------------------------------
 
@@ -204,15 +206,22 @@ architecture a_uc of uc is
 		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
 			and opcode = "1010" and estado = "10" else
 		--pulo caso menor
-		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
-			and opcode = "1011" and estado = "10"
+		(instrucao(6 downto 0) + pc_out) when wr_en_pc = '1' and jmp_en = '1'
+			and opcode = "1011" and estado = "10" and instrucao(12) = '1'
+			and out_estado_pulo = "10" else
+		(pc_out - instrucao(6 downto 0)) when wr_en_pc = '1' and jmp_en = '1'
+			and opcode = "1011" and estado = "10" and instrucao(12) = '0'
 			and out_estado_pulo = "10" else
 		pc_out + 1 when wr_en_pc = '1' and jmp_en = '1'
 			and opcode = "1011" and estado = "10"
 			and out_estado_pulo /= "10" else
 		--pulo caso igual
-		instrucao(6 downto 0) when wr_en_pc = '1' and jmp_en = '1'
-			and opcode = "1100" and estado = "00" and out_estado_pulo = "00" else
+		(instrucao(6 downto 0) + pc_out) when wr_en_pc = '1' and jmp_en = '1'
+			and opcode = "1100" and estado = "10" and instrucao(12) = '1'
+			and out_estado_pulo = "00" else
+		(pc_out - instrucao(6 downto 0)) when wr_en_pc = '1' and jmp_en = '1'
+			and opcode = "1100" and estado = "10" and instrucao(12) = '0'
+			and out_estado_pulo = "00" else
 		pc_out + 1 when wr_en_pc = '1' and jmp_en = '1'
 			and opcode = "1100" and estado = "10"
 			and out_estado_pulo /= "00"
