@@ -320,7 +320,10 @@ architecture a_uc of uc is
 	
 	in_ram <= 
 		-- SW
-		bancoreg_out1 when opcode = "1111";
+		bancoreg_out1 when opcode = "1111"
+			and (estado = "00" or estado = "01")
+			else "00000000000000000";
+		
 			
 	--------- Write/Back --/////////////////////////////////////
 	
