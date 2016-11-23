@@ -255,7 +255,7 @@ architecture a_uc of uc is
 			and (estado = "00" or estado = "01") else
 		-- LW w SW
 		instrucao(12 downto 9) when (opcode = "1101" or opcode = "1111")
-			and estado = "00" 
+			and (estado = "00" or estado = "01")
 			else "0000";
 
 
