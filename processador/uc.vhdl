@@ -252,11 +252,8 @@ architecture a_uc of uc is
 			and (estado = "00" or estado = "01") else
 		-- Soma e subtração de constantes ao registrador
 		instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
-			and (estado = "00" or estado = "01") else
-		-- LW e SW
-		instrucao(12 downto 9) when (opcode = "1101" or opcode = "1111")
 			and (estado = "00" or estado = "01")
-			else "0000";
+		else "0000";
 
 
 	select_reg2 <=
@@ -265,10 +262,13 @@ architecture a_uc of uc is
 			and (estado = "00" or estado = "01") else
 		--mover registradores
 		instrucao(8 downto 5) when opcode = "0011" 
-			and (estado = "00" or estado = "01")
-			else
+			and (estado = "00" or estado = "01") else
 		--Comparação de valor entre dois registradores
-		instrucao(8 downto 5) when opcode = "0100" and (estado = "00" or estado = "01")
+		instrucao(8 downto 5) when opcode = "0100"
+			and (estado = "00" or estado = "01") else
+		-- SW
+		instrucao(12 downto 9) when opcode = "1111"
+			and (estado = "00" or estado = "01")
 		else "0000";
 
 
@@ -312,22 +312,10 @@ architecture a_uc of uc is
 		"000" when opcode = "0110" and estado = "01" else
 		"001" when opcode = "0111" and estado = "01"
 		else "000";
-		
-	end_ram <=
-		-- LW e SW
-		instrucao(6 downto 0) when (opcode = "1101" or opcode = "1111")
-		else "0000000";
-	
-	in_ram <= 
-		-- SW
-		bancoreg_out1 when opcode = "1111" 
-			and (estado = "00" or estado = "01");
-			
-		
-		
-			
+
+
 	--------- Write/Back --/////////////////////////////////////
-	
+
 	bancoreg_datain <=
 		out_ula when (opcode = "0001" or opcode = "0010")
 			and (estado = "10" or estado = "01") else
@@ -344,8 +332,9 @@ architecture a_uc of uc is
 		out_ula when (opcode = "0110" or opcode = "0111")
 			and (estado = "10" or estado = "01") else
 		-- LW
-		out_ram when opcode = "1101" 
-			and (estado = "10" or estado = "01");
+		out_ram when opcode = "1101"
+			and estado = "01"
+		else "00000000000000000";
 
 
 	sel_writereg <=
@@ -363,9 +352,9 @@ architecture a_uc of uc is
 		instrucao(12 downto 9) when opcode = "1101"  
 			and (estado = "10" or estado = "01") 
 		else "0000";
+--!!!!!!!!!!!
 
 
-		
 	wr_en_banco_reg17b <=
 		'1' when (opcode = "0001" or opcode = "0010")
 			and estado = "01" else
@@ -376,10 +365,10 @@ architecture a_uc of uc is
 		'1' when (opcode = "0110" or opcode = "0111")
 			and estado = "01" else 
 		-- LW e SW
-		'1' when (opcode = "1101" or opcode = "1111") -- Não tenho certeza dessa aí
-			and (estado = "10" or estado = "01") 
+		'1' when (opcode = "1101" or opcode = "1111")
+			and estado = "01"
 		else '0';
-
+--!!!!!!!!!!!
 
 	wr_en_estado_pulo <=
 		--Comparação de valor entre dois registradores
@@ -387,14 +376,32 @@ architecture a_uc of uc is
 		--Comparação de valor entre cosntante e registrador
 		'1' when opcode = "1110" and estado = "01"
 		else '0';
+
+
+
+	-- RAM ---------------
+
+
+	end_ram <=
+		-- SW
+		instrucao(6 downto 0) when opcode = "1111"
+			and estado = "01"
+		else "0000000";
+
+	in_ram <= 
+		-- SW
+		bancoreg_out2 when opcode = "1111"
+			and estado = "01"
+			else "00000000000000000";
 	
-	wr_en_ram <= '1' when opcode = "1111" 
+	wr_en_ram <= '1' when opcode = "1111"
+			and estado = "01"
 		else '0';
-	----------------- RAM -------------------------------------------------
-	
-	
-	
-	
+
+
+
+
+
 
 end architecture;
 
