@@ -349,10 +349,10 @@ architecture a_uc of uc is
 		instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
 			and (estado = "10" or estado = "01") else
 		-- LW
-		instrucao(12 downto 9) when opcode = "1101"  
-			and (estado = "10" or estado = "01") 
+		instrucao(12 downto 9) when opcode = "1101"
+			and estado = "01"
 		else "0000";
---!!!!!!!!!!!
+
 
 
 	wr_en_banco_reg17b <=
@@ -364,11 +364,11 @@ architecture a_uc of uc is
 		-- Soma e subtração de constantes ao registrador
 		'1' when (opcode = "0110" or opcode = "0111")
 			and estado = "01" else 
-		-- LW e SW
-		'1' when (opcode = "1101" or opcode = "1111")
+		-- LW
+		'1' when opcode = "1101"
 			and estado = "01"
 		else '0';
---!!!!!!!!!!!
+
 
 	wr_en_estado_pulo <=
 		--Comparação de valor entre dois registradores
@@ -385,7 +385,10 @@ architecture a_uc of uc is
 	end_ram <=
 		-- SW
 		instrucao(6 downto 0) when opcode = "1111"
-			and estado = "01"
+			and estado = "01" else
+		-- LW
+		instrucao(6 downto 0) when opcode = "1101"
+			and (estado = "00" or estado = "01")
 		else "0000000";
 
 	in_ram <= 
@@ -394,7 +397,9 @@ architecture a_uc of uc is
 			and estado = "01"
 			else "00000000000000000";
 	
-	wr_en_ram <= '1' when opcode = "1111"
+	wr_en_ram <=
+		-- SW
+		'1' when opcode = "1111"
 			and estado = "01"
 		else '0';
 

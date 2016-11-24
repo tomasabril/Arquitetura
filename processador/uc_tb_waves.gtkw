@@ -1,22 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.62 (w)1999-2014 BSI
-[*] Thu Nov 24 18:25:09 2016
+[*] Thu Nov 24 18:36:47 2016
 [*]
 [dumpfile] "/home/pet/git/Arquitetura/processador/uc_tb.ghw"
-[dumpfile_mtime] "Thu Nov 24 18:17:30 2016"
-[dumpfile_size] 94986
+[dumpfile_mtime] "Thu Nov 24 18:32:13 2016"
+[dumpfile_size] 95996
 [savefile] "/home/pet/git/Arquitetura/processador/uc_tb_waves.gtkw"
 [timestart] 0
 [size] 1920 949
 [pos] -87 -87
-*-28.042957 405000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-28.042957 970000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.uc_tb.
 [treeopen] top.uc_tb.utt.
 [treeopen] top.uc_tb.utt.ram0.
 [treeopen] top.uc_tb.utt.ram0.conteudo_ram.
-[sst_width] 302
-[signals_width] 215
+[sst_width] 263
+[signals_width] 247
 [sst_expanded] 1
 [sst_vpaned_height] 558
 @28
@@ -62,7 +62,6 @@ top.uc_tb.utt.ram0.wr_en
 #{top.uc_tb.utt.ram0.conteudo_ram[14][16:0]} top.uc_tb.utt.ram0.conteudo_ram[14][16] top.uc_tb.utt.ram0.conteudo_ram[14][15] top.uc_tb.utt.ram0.conteudo_ram[14][14] top.uc_tb.utt.ram0.conteudo_ram[14][13] top.uc_tb.utt.ram0.conteudo_ram[14][12] top.uc_tb.utt.ram0.conteudo_ram[14][11] top.uc_tb.utt.ram0.conteudo_ram[14][10] top.uc_tb.utt.ram0.conteudo_ram[14][9] top.uc_tb.utt.ram0.conteudo_ram[14][8] top.uc_tb.utt.ram0.conteudo_ram[14][7] top.uc_tb.utt.ram0.conteudo_ram[14][6] top.uc_tb.utt.ram0.conteudo_ram[14][5] top.uc_tb.utt.ram0.conteudo_ram[14][4] top.uc_tb.utt.ram0.conteudo_ram[14][3] top.uc_tb.utt.ram0.conteudo_ram[14][2] top.uc_tb.utt.ram0.conteudo_ram[14][1] top.uc_tb.utt.ram0.conteudo_ram[14][0]
 #{top.uc_tb.utt.ram0.endereco[6:0]} top.uc_tb.utt.ram0.endereco[6] top.uc_tb.utt.ram0.endereco[5] top.uc_tb.utt.ram0.endereco[4] top.uc_tb.utt.ram0.endereco[3] top.uc_tb.utt.ram0.endereco[2] top.uc_tb.utt.ram0.endereco[1] top.uc_tb.utt.ram0.endereco[0]
 #{top.uc_tb.utt.ram0.dado_in[16:0]} top.uc_tb.utt.ram0.dado_in[16] top.uc_tb.utt.ram0.dado_in[15] top.uc_tb.utt.ram0.dado_in[14] top.uc_tb.utt.ram0.dado_in[13] top.uc_tb.utt.ram0.dado_in[12] top.uc_tb.utt.ram0.dado_in[11] top.uc_tb.utt.ram0.dado_in[10] top.uc_tb.utt.ram0.dado_in[9] top.uc_tb.utt.ram0.dado_in[8] top.uc_tb.utt.ram0.dado_in[7] top.uc_tb.utt.ram0.dado_in[6] top.uc_tb.utt.ram0.dado_in[5] top.uc_tb.utt.ram0.dado_in[4] top.uc_tb.utt.ram0.dado_in[3] top.uc_tb.utt.ram0.dado_in[2] top.uc_tb.utt.ram0.dado_in[1] top.uc_tb.utt.ram0.dado_in[0]
-@22
 #{top.uc_tb.utt.ram0.dado_out[16:0]} top.uc_tb.utt.ram0.dado_out[16] top.uc_tb.utt.ram0.dado_out[15] top.uc_tb.utt.ram0.dado_out[14] top.uc_tb.utt.ram0.dado_out[13] top.uc_tb.utt.ram0.dado_out[12] top.uc_tb.utt.ram0.dado_out[11] top.uc_tb.utt.ram0.dado_out[10] top.uc_tb.utt.ram0.dado_out[9] top.uc_tb.utt.ram0.dado_out[8] top.uc_tb.utt.ram0.dado_out[7] top.uc_tb.utt.ram0.dado_out[6] top.uc_tb.utt.ram0.dado_out[5] top.uc_tb.utt.ram0.dado_out[4] top.uc_tb.utt.ram0.dado_out[3] top.uc_tb.utt.ram0.dado_out[2] top.uc_tb.utt.ram0.dado_out[1] top.uc_tb.utt.ram0.dado_out[0]
 [pattern_trace] 1
 [pattern_trace] 0
