@@ -320,9 +320,10 @@ architecture a_uc of uc is
 	
 	in_ram <= 
 		-- SW
-		bancoreg_out1 when opcode = "1111"
-			and (estado = "01" or estado = "10")
-			else "00000000000000000";
+		bancoreg_out1 when opcode = "1111" 
+			and (estado = "00" or estado = "01");
+			
+		
 		
 			
 	--------- Write/Back --/////////////////////////////////////
@@ -344,8 +345,7 @@ architecture a_uc of uc is
 			and (estado = "10" or estado = "01") else
 		-- LW
 		out_ram when opcode = "1101" 
-			and (estado = "10" or estado = "01") 
-		else "00000000000000000";
+			and (estado = "10" or estado = "01");
 
 
 	sel_writereg <=
@@ -388,7 +388,7 @@ architecture a_uc of uc is
 		'1' when opcode = "1110" and estado = "01"
 		else '0';
 	
-	wr_en_ram <= '1' when opcode = "1111" and estado = "10"
+	wr_en_ram <= '1' when opcode = "1111" 
 		else '0';
 	----------------- RAM -------------------------------------------------
 	
