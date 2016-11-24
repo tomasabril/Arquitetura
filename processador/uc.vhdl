@@ -3,8 +3,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
--- Faltou a gente por uma instrução de cmp com constante e colocar o programa na rom, além da parte mais dificil, testar
--- primeira unidade de controle para ser entregue dia 21/out
+
 entity uc is
 	port(
 		clk : in std_logic;
@@ -159,7 +158,7 @@ architecture a_uc of uc is
 -- 00 fetch
 -- 01 decode/execute
 -- 10 write back
--- 11 read rom
+-- 11 prepare next
 
 --lista de opcodes:
 --formato 1
@@ -313,6 +312,27 @@ architecture a_uc of uc is
 		"001" when opcode = "0111" and estado = "01"
 		else "000";
 
+	end_ram <=
+		-- SW
+		instrucao(6 downto 0) when opcode = "1111"
+			and estado = "01" else
+		-- LW
+		instrucao(6 downto 0) when opcode = "1101"
+			and (estado = "00" or estado = "01")
+		else "0000000";
+
+	in_ram <= 
+		-- SW
+		bancoreg_out2 when opcode = "1111"
+			and estado = "01"
+			else "00000000000000000";
+
+	wr_en_ram <=
+		-- SW
+		'1' when opcode = "1111"
+			and estado = "01"
+		else '0';
+
 
 	--------- Write/Back --/////////////////////////////////////
 
@@ -376,34 +396,6 @@ architecture a_uc of uc is
 		--Comparação de valor entre cosntante e registrador
 		'1' when opcode = "1110" and estado = "01"
 		else '0';
-
-
-
-	-- RAM ---------------
-
-
-	end_ram <=
-		-- SW
-		instrucao(6 downto 0) when opcode = "1111"
-			and estado = "01" else
-		-- LW
-		instrucao(6 downto 0) when opcode = "1101"
-			and (estado = "00" or estado = "01")
-		else "0000000";
-
-	in_ram <= 
-		-- SW
-		bancoreg_out2 when opcode = "1111"
-			and estado = "01"
-			else "00000000000000000";
-	
-	wr_en_ram <=
-		-- SW
-		'1' when opcode = "1111"
-			and estado = "01"
-		else '0';
-
-
 
 
 
