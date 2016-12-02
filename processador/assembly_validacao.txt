@@ -1,0 +1,52 @@
+coc	carga de constante no registrador
+addc	soma de constante a registrador
+cmp	compara dois registradores
+jl	jump if less
+jeq	jump if equals zero
+
+
+----------programa:
+
+	COC R2,2;		//numeros que sao colocados na RAM
+	COC R3,2;		//enderecos dos numeros da RAM para comparar
+	COC R4,0;		//valor temporario da comparacao
+	COC R5,0;		//valor do numero a ser subtraido na comparacao
+	COC R6,0;		//enderecos dos numeros da RAM a ser comparado
+	COC R7,32;		//valor final
+
+	loop0:
+		SW R2,@R3;
+		ADDC R3,1;
+		ADDC R2,1;
+		CMP R3,R7;
+		JL loop0;
+	COC R3,1;		//primeiro da fila -1
+	loop1:
+		ADDC R3,1;
+		LW R5,R3;
+		CMP R5,R0;
+		JEQ loop1;
+	ADD R4,R5;
+	loop2:
+		ADD R4,1;
+		MOV R6,R4;
+		loop3:
+			SUB R4,R5;
+			CMP R5,R4;
+			JL loop3;
+		JEQ remove;
+	end_a:
+		CMP R5,R7;
+		JL loop1;
+		JEQ fim;
+
+	//funcoes separadas:
+	remove:
+		SW 0,R6;
+		JMP end_a;
+	
+	fim:
+
+
+
+
