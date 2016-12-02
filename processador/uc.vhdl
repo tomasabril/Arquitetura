@@ -173,8 +173,8 @@ architecture a_uc of uc is
 --0110 soma constante ao registrador
 --0111 Subtrai cosntante do registrador
 --1110 Comparação com constante
---1101 LW
---1111 SW
+--1101 LW carrega para um registrador o valor de um endereco de outro registrador
+--1111 SW salva na ram a partir de um endereco de u registrador
 
 --formato 3
 --1010 Jump incondicional	--pula para endereco absoluto
@@ -250,6 +250,9 @@ architecture a_uc of uc is
 			and (estado = "00" or estado = "01") else
 		-- Soma e subtração de constantes ao registrador
 		instrucao(12 downto 9) when (opcode = "0110" or opcode = "0111")
+			and (estado = "00" or estado = "01") else
+		-- SW
+		instrucao(12 downto 9) when opcode = "1111"
 			and (estado = "00" or estado = "01")
 		else "0000";
 
@@ -265,8 +268,11 @@ architecture a_uc of uc is
 		instrucao(8 downto 5) when opcode = "0100"
 			and (estado = "00" or estado = "01") else
 		-- SW
-		instrucao(12 downto 9) when opcode = "1111"
-			and (estado = "00" or estado = "01")
+		instrucao(8 downto 5) when opcode = "1111"
+			and (estado = "00" or estado = "01") else
+		-- LW
+			instrucao(8 downto 5) when opcode = "1101"
+			and (estado = "00" or estado = "01" or estado = "10")
 		else "0000";
 
 
@@ -308,21 +314,23 @@ architecture a_uc of uc is
 		"101" when opcode = "0101" and estado = "01" else
 		-- Soma e subtração de constantes ao registrador
 		"000" when opcode = "0110" and estado = "01" else
-		"001" when opcode = "0111" and estado = "01"
+		"001" when opcode = "0111" and estado = "01" else
+		-- SW
+		"101" when opcode = "1111" and estado = "01"
 		else "000";
 
 	end_ram <=
 		-- SW
-		instrucao(6 downto 0) when opcode = "1111"
+		bancoreg_out2(6 downto 0) when opcode = "1111"
 			and estado = "01" else
 		-- LW
-		instrucao(6 downto 0) when opcode = "1101"
-			and (estado = "00" or estado = "01")
+		bancoreg_out2(6 downto 0) when opcode = "1101"
+			and (estado = "01" or estado = "10")
 		else "0000000";
 
 	in_ram <= 
 		-- SW
-		bancoreg_out2 when opcode = "1111"
+		out_ula when opcode = "1111"
 			and estado = "01"
 			else "00000000000000000";
 
@@ -352,7 +360,7 @@ architecture a_uc of uc is
 			and (estado = "10" or estado = "01") else
 		-- LW
 		out_ram when opcode = "1101"
-			and estado = "01"
+			and estado = "10"
 		else "00000000000000000";
 
 
@@ -369,7 +377,7 @@ architecture a_uc of uc is
 			and (estado = "10" or estado = "01") else
 		-- LW
 		instrucao(12 downto 9) when opcode = "1101"
-			and estado = "01"
+			and estado = "10"
 		else "0000";
 
 
@@ -385,7 +393,7 @@ architecture a_uc of uc is
 			and estado = "01" else 
 		-- LW
 		'1' when opcode = "1101"
-			and estado = "01"
+			and estado = "10"
 		else '0';
 
 

@@ -1,20 +1,20 @@
 [*]
 [*] GTKWave Analyzer v3.3.62 (w)1999-2014 BSI
-[*] Thu Nov 24 18:36:47 2016
+[*] Fri Dec  2 13:59:09 2016
 [*]
 [dumpfile] "/home/pet/git/Arquitetura/processador/uc_tb.ghw"
-[dumpfile_mtime] "Thu Nov 24 18:32:13 2016"
-[dumpfile_size] 95996
+[dumpfile_mtime] "Fri Dec  2 13:53:34 2016"
+[dumpfile_size] 96206
 [savefile] "/home/pet/git/Arquitetura/processador/uc_tb_waves.gtkw"
-[timestart] 0
+[timestart] 943000000
 [size] 1920 949
-[pos] -87 -87
-*-28.042957 970000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -48 -58
+*-28.042957 1060000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] top.
 [treeopen] top.uc_tb.
 [treeopen] top.uc_tb.utt.
-[treeopen] top.uc_tb.utt.ram0.
 [treeopen] top.uc_tb.utt.ram0.conteudo_ram.
+[treeopen] top.uc_tb.utt.ula0.
 [sst_width] 263
 [signals_width] 247
 [sst_expanded] 1
@@ -31,12 +31,16 @@ top.uc_tb.utt.wr_en_pc
 #{top.uc_tb.utt.in_estado_pulo[1:0]} top.uc_tb.utt.in_estado_pulo[1] top.uc_tb.utt.in_estado_pulo[0]
 @22
 #{top.uc_tb.utt.out_ula[16:0]} top.uc_tb.utt.out_ula[16] top.uc_tb.utt.out_ula[15] top.uc_tb.utt.out_ula[14] top.uc_tb.utt.out_ula[13] top.uc_tb.utt.out_ula[12] top.uc_tb.utt.out_ula[11] top.uc_tb.utt.out_ula[10] top.uc_tb.utt.out_ula[9] top.uc_tb.utt.out_ula[8] top.uc_tb.utt.out_ula[7] top.uc_tb.utt.out_ula[6] top.uc_tb.utt.out_ula[5] top.uc_tb.utt.out_ula[4] top.uc_tb.utt.out_ula[3] top.uc_tb.utt.out_ula[2] top.uc_tb.utt.out_ula[1] top.uc_tb.utt.out_ula[0]
+#{top.uc_tb.utt.ula0.entrada0[16:0]} top.uc_tb.utt.ula0.entrada0[16] top.uc_tb.utt.ula0.entrada0[15] top.uc_tb.utt.ula0.entrada0[14] top.uc_tb.utt.ula0.entrada0[13] top.uc_tb.utt.ula0.entrada0[12] top.uc_tb.utt.ula0.entrada0[11] top.uc_tb.utt.ula0.entrada0[10] top.uc_tb.utt.ula0.entrada0[9] top.uc_tb.utt.ula0.entrada0[8] top.uc_tb.utt.ula0.entrada0[7] top.uc_tb.utt.ula0.entrada0[6] top.uc_tb.utt.ula0.entrada0[5] top.uc_tb.utt.ula0.entrada0[4] top.uc_tb.utt.ula0.entrada0[3] top.uc_tb.utt.ula0.entrada0[2] top.uc_tb.utt.ula0.entrada0[1] top.uc_tb.utt.ula0.entrada0[0]
+#{top.uc_tb.utt.ula0.entrada1[16:0]} top.uc_tb.utt.ula0.entrada1[16] top.uc_tb.utt.ula0.entrada1[15] top.uc_tb.utt.ula0.entrada1[14] top.uc_tb.utt.ula0.entrada1[13] top.uc_tb.utt.ula0.entrada1[12] top.uc_tb.utt.ula0.entrada1[11] top.uc_tb.utt.ula0.entrada1[10] top.uc_tb.utt.ula0.entrada1[9] top.uc_tb.utt.ula0.entrada1[8] top.uc_tb.utt.ula0.entrada1[7] top.uc_tb.utt.ula0.entrada1[6] top.uc_tb.utt.ula0.entrada1[5] top.uc_tb.utt.ula0.entrada1[4] top.uc_tb.utt.ula0.entrada1[3] top.uc_tb.utt.ula0.entrada1[2] top.uc_tb.utt.ula0.entrada1[1] top.uc_tb.utt.ula0.entrada1[0]
 @28
+#{top.uc_tb.utt.ula0.estado[1:0]} top.uc_tb.utt.ula0.estado[1] top.uc_tb.utt.ula0.estado[0]
 #{top.uc_tb.utt.select_ula[2:0]} top.uc_tb.utt.select_ula[2] top.uc_tb.utt.select_ula[1] top.uc_tb.utt.select_ula[0]
 @22
 #{top.uc_tb.utt.in2_ula[16:0]} top.uc_tb.utt.in2_ula[16] top.uc_tb.utt.in2_ula[15] top.uc_tb.utt.in2_ula[14] top.uc_tb.utt.in2_ula[13] top.uc_tb.utt.in2_ula[12] top.uc_tb.utt.in2_ula[11] top.uc_tb.utt.in2_ula[10] top.uc_tb.utt.in2_ula[9] top.uc_tb.utt.in2_ula[8] top.uc_tb.utt.in2_ula[7] top.uc_tb.utt.in2_ula[6] top.uc_tb.utt.in2_ula[5] top.uc_tb.utt.in2_ula[4] top.uc_tb.utt.in2_ula[3] top.uc_tb.utt.in2_ula[2] top.uc_tb.utt.in2_ula[1] top.uc_tb.utt.in2_ula[0]
-@24
+@25
 #{top.uc_tb.utt.bancoreg_out2[16:0]} top.uc_tb.utt.bancoreg_out2[16] top.uc_tb.utt.bancoreg_out2[15] top.uc_tb.utt.bancoreg_out2[14] top.uc_tb.utt.bancoreg_out2[13] top.uc_tb.utt.bancoreg_out2[12] top.uc_tb.utt.bancoreg_out2[11] top.uc_tb.utt.bancoreg_out2[10] top.uc_tb.utt.bancoreg_out2[9] top.uc_tb.utt.bancoreg_out2[8] top.uc_tb.utt.bancoreg_out2[7] top.uc_tb.utt.bancoreg_out2[6] top.uc_tb.utt.bancoreg_out2[5] top.uc_tb.utt.bancoreg_out2[4] top.uc_tb.utt.bancoreg_out2[3] top.uc_tb.utt.bancoreg_out2[2] top.uc_tb.utt.bancoreg_out2[1] top.uc_tb.utt.bancoreg_out2[0]
+@24
 #{top.uc_tb.utt.bancoreg_out1[16:0]} top.uc_tb.utt.bancoreg_out1[16] top.uc_tb.utt.bancoreg_out1[15] top.uc_tb.utt.bancoreg_out1[14] top.uc_tb.utt.bancoreg_out1[13] top.uc_tb.utt.bancoreg_out1[12] top.uc_tb.utt.bancoreg_out1[11] top.uc_tb.utt.bancoreg_out1[10] top.uc_tb.utt.bancoreg_out1[9] top.uc_tb.utt.bancoreg_out1[8] top.uc_tb.utt.bancoreg_out1[7] top.uc_tb.utt.bancoreg_out1[6] top.uc_tb.utt.bancoreg_out1[5] top.uc_tb.utt.bancoreg_out1[4] top.uc_tb.utt.bancoreg_out1[3] top.uc_tb.utt.bancoreg_out1[2] top.uc_tb.utt.bancoreg_out1[1] top.uc_tb.utt.bancoreg_out1[0]
 @22
 #{top.uc_tb.utt.sel_writereg[3:0]} top.uc_tb.utt.sel_writereg[3] top.uc_tb.utt.sel_writereg[2] top.uc_tb.utt.sel_writereg[1] top.uc_tb.utt.sel_writereg[0]
@@ -51,6 +55,10 @@ top.uc_tb.utt.wr_en_pc
 #{top.uc_tb.utt.pc_in[6:0]} top.uc_tb.utt.pc_in[6] top.uc_tb.utt.pc_in[5] top.uc_tb.utt.pc_in[4] top.uc_tb.utt.pc_in[3] top.uc_tb.utt.pc_in[2] top.uc_tb.utt.pc_in[1] top.uc_tb.utt.pc_in[0]
 @24
 #{top.uc_tb.utt.pc_out[6:0]} top.uc_tb.utt.pc_out[6] top.uc_tb.utt.pc_out[5] top.uc_tb.utt.pc_out[4] top.uc_tb.utt.pc_out[3] top.uc_tb.utt.pc_out[2] top.uc_tb.utt.pc_out[1] top.uc_tb.utt.pc_out[0]
+@22
+#{top.uc_tb.utt.banco_reg17b0.data_out1[16:0]} top.uc_tb.utt.banco_reg17b0.data_out1[16] top.uc_tb.utt.banco_reg17b0.data_out1[15] top.uc_tb.utt.banco_reg17b0.data_out1[14] top.uc_tb.utt.banco_reg17b0.data_out1[13] top.uc_tb.utt.banco_reg17b0.data_out1[12] top.uc_tb.utt.banco_reg17b0.data_out1[11] top.uc_tb.utt.banco_reg17b0.data_out1[10] top.uc_tb.utt.banco_reg17b0.data_out1[9] top.uc_tb.utt.banco_reg17b0.data_out1[8] top.uc_tb.utt.banco_reg17b0.data_out1[7] top.uc_tb.utt.banco_reg17b0.data_out1[6] top.uc_tb.utt.banco_reg17b0.data_out1[5] top.uc_tb.utt.banco_reg17b0.data_out1[4] top.uc_tb.utt.banco_reg17b0.data_out1[3] top.uc_tb.utt.banco_reg17b0.data_out1[2] top.uc_tb.utt.banco_reg17b0.data_out1[1] top.uc_tb.utt.banco_reg17b0.data_out1[0]
+#{top.uc_tb.utt.banco_reg17b0.data_out2[16:0]} top.uc_tb.utt.banco_reg17b0.data_out2[16] top.uc_tb.utt.banco_reg17b0.data_out2[15] top.uc_tb.utt.banco_reg17b0.data_out2[14] top.uc_tb.utt.banco_reg17b0.data_out2[13] top.uc_tb.utt.banco_reg17b0.data_out2[12] top.uc_tb.utt.banco_reg17b0.data_out2[11] top.uc_tb.utt.banco_reg17b0.data_out2[10] top.uc_tb.utt.banco_reg17b0.data_out2[9] top.uc_tb.utt.banco_reg17b0.data_out2[8] top.uc_tb.utt.banco_reg17b0.data_out2[7] top.uc_tb.utt.banco_reg17b0.data_out2[6] top.uc_tb.utt.banco_reg17b0.data_out2[5] top.uc_tb.utt.banco_reg17b0.data_out2[4] top.uc_tb.utt.banco_reg17b0.data_out2[3] top.uc_tb.utt.banco_reg17b0.data_out2[2] top.uc_tb.utt.banco_reg17b0.data_out2[1] top.uc_tb.utt.banco_reg17b0.data_out2[0]
+@24
 #{top.uc_tb.utt.banco_reg17b0.data_out3[16:0]} top.uc_tb.utt.banco_reg17b0.data_out3[16] top.uc_tb.utt.banco_reg17b0.data_out3[15] top.uc_tb.utt.banco_reg17b0.data_out3[14] top.uc_tb.utt.banco_reg17b0.data_out3[13] top.uc_tb.utt.banco_reg17b0.data_out3[12] top.uc_tb.utt.banco_reg17b0.data_out3[11] top.uc_tb.utt.banco_reg17b0.data_out3[10] top.uc_tb.utt.banco_reg17b0.data_out3[9] top.uc_tb.utt.banco_reg17b0.data_out3[8] top.uc_tb.utt.banco_reg17b0.data_out3[7] top.uc_tb.utt.banco_reg17b0.data_out3[6] top.uc_tb.utt.banco_reg17b0.data_out3[5] top.uc_tb.utt.banco_reg17b0.data_out3[4] top.uc_tb.utt.banco_reg17b0.data_out3[3] top.uc_tb.utt.banco_reg17b0.data_out3[2] top.uc_tb.utt.banco_reg17b0.data_out3[1] top.uc_tb.utt.banco_reg17b0.data_out3[0]
 #{top.uc_tb.utt.banco_reg17b0.data_out4[16:0]} top.uc_tb.utt.banco_reg17b0.data_out4[16] top.uc_tb.utt.banco_reg17b0.data_out4[15] top.uc_tb.utt.banco_reg17b0.data_out4[14] top.uc_tb.utt.banco_reg17b0.data_out4[13] top.uc_tb.utt.banco_reg17b0.data_out4[12] top.uc_tb.utt.banco_reg17b0.data_out4[11] top.uc_tb.utt.banco_reg17b0.data_out4[10] top.uc_tb.utt.banco_reg17b0.data_out4[9] top.uc_tb.utt.banco_reg17b0.data_out4[8] top.uc_tb.utt.banco_reg17b0.data_out4[7] top.uc_tb.utt.banco_reg17b0.data_out4[6] top.uc_tb.utt.banco_reg17b0.data_out4[5] top.uc_tb.utt.banco_reg17b0.data_out4[4] top.uc_tb.utt.banco_reg17b0.data_out4[3] top.uc_tb.utt.banco_reg17b0.data_out4[2] top.uc_tb.utt.banco_reg17b0.data_out4[1] top.uc_tb.utt.banco_reg17b0.data_out4[0]
 #{top.uc_tb.utt.banco_reg17b0.data_out5[16:0]} top.uc_tb.utt.banco_reg17b0.data_out5[16] top.uc_tb.utt.banco_reg17b0.data_out5[15] top.uc_tb.utt.banco_reg17b0.data_out5[14] top.uc_tb.utt.banco_reg17b0.data_out5[13] top.uc_tb.utt.banco_reg17b0.data_out5[12] top.uc_tb.utt.banco_reg17b0.data_out5[11] top.uc_tb.utt.banco_reg17b0.data_out5[10] top.uc_tb.utt.banco_reg17b0.data_out5[9] top.uc_tb.utt.banco_reg17b0.data_out5[8] top.uc_tb.utt.banco_reg17b0.data_out5[7] top.uc_tb.utt.banco_reg17b0.data_out5[6] top.uc_tb.utt.banco_reg17b0.data_out5[5] top.uc_tb.utt.banco_reg17b0.data_out5[4] top.uc_tb.utt.banco_reg17b0.data_out5[3] top.uc_tb.utt.banco_reg17b0.data_out5[2] top.uc_tb.utt.banco_reg17b0.data_out5[1] top.uc_tb.utt.banco_reg17b0.data_out5[0]
@@ -59,9 +67,10 @@ top.uc_tb.utt.ram0.wr_en
 @200
 -ram
 @24
-#{top.uc_tb.utt.ram0.conteudo_ram[14][16:0]} top.uc_tb.utt.ram0.conteudo_ram[14][16] top.uc_tb.utt.ram0.conteudo_ram[14][15] top.uc_tb.utt.ram0.conteudo_ram[14][14] top.uc_tb.utt.ram0.conteudo_ram[14][13] top.uc_tb.utt.ram0.conteudo_ram[14][12] top.uc_tb.utt.ram0.conteudo_ram[14][11] top.uc_tb.utt.ram0.conteudo_ram[14][10] top.uc_tb.utt.ram0.conteudo_ram[14][9] top.uc_tb.utt.ram0.conteudo_ram[14][8] top.uc_tb.utt.ram0.conteudo_ram[14][7] top.uc_tb.utt.ram0.conteudo_ram[14][6] top.uc_tb.utt.ram0.conteudo_ram[14][5] top.uc_tb.utt.ram0.conteudo_ram[14][4] top.uc_tb.utt.ram0.conteudo_ram[14][3] top.uc_tb.utt.ram0.conteudo_ram[14][2] top.uc_tb.utt.ram0.conteudo_ram[14][1] top.uc_tb.utt.ram0.conteudo_ram[14][0]
 #{top.uc_tb.utt.ram0.endereco[6:0]} top.uc_tb.utt.ram0.endereco[6] top.uc_tb.utt.ram0.endereco[5] top.uc_tb.utt.ram0.endereco[4] top.uc_tb.utt.ram0.endereco[3] top.uc_tb.utt.ram0.endereco[2] top.uc_tb.utt.ram0.endereco[1] top.uc_tb.utt.ram0.endereco[0]
 #{top.uc_tb.utt.ram0.dado_in[16:0]} top.uc_tb.utt.ram0.dado_in[16] top.uc_tb.utt.ram0.dado_in[15] top.uc_tb.utt.ram0.dado_in[14] top.uc_tb.utt.ram0.dado_in[13] top.uc_tb.utt.ram0.dado_in[12] top.uc_tb.utt.ram0.dado_in[11] top.uc_tb.utt.ram0.dado_in[10] top.uc_tb.utt.ram0.dado_in[9] top.uc_tb.utt.ram0.dado_in[8] top.uc_tb.utt.ram0.dado_in[7] top.uc_tb.utt.ram0.dado_in[6] top.uc_tb.utt.ram0.dado_in[5] top.uc_tb.utt.ram0.dado_in[4] top.uc_tb.utt.ram0.dado_in[3] top.uc_tb.utt.ram0.dado_in[2] top.uc_tb.utt.ram0.dado_in[1] top.uc_tb.utt.ram0.dado_in[0]
 #{top.uc_tb.utt.ram0.dado_out[16:0]} top.uc_tb.utt.ram0.dado_out[16] top.uc_tb.utt.ram0.dado_out[15] top.uc_tb.utt.ram0.dado_out[14] top.uc_tb.utt.ram0.dado_out[13] top.uc_tb.utt.ram0.dado_out[12] top.uc_tb.utt.ram0.dado_out[11] top.uc_tb.utt.ram0.dado_out[10] top.uc_tb.utt.ram0.dado_out[9] top.uc_tb.utt.ram0.dado_out[8] top.uc_tb.utt.ram0.dado_out[7] top.uc_tb.utt.ram0.dado_out[6] top.uc_tb.utt.ram0.dado_out[5] top.uc_tb.utt.ram0.dado_out[4] top.uc_tb.utt.ram0.dado_out[3] top.uc_tb.utt.ram0.dado_out[2] top.uc_tb.utt.ram0.dado_out[1] top.uc_tb.utt.ram0.dado_out[0]
+@22
+#{top.uc_tb.utt.ram0.conteudo_ram[2][16:0]} top.uc_tb.utt.ram0.conteudo_ram[2][16] top.uc_tb.utt.ram0.conteudo_ram[2][15] top.uc_tb.utt.ram0.conteudo_ram[2][14] top.uc_tb.utt.ram0.conteudo_ram[2][13] top.uc_tb.utt.ram0.conteudo_ram[2][12] top.uc_tb.utt.ram0.conteudo_ram[2][11] top.uc_tb.utt.ram0.conteudo_ram[2][10] top.uc_tb.utt.ram0.conteudo_ram[2][9] top.uc_tb.utt.ram0.conteudo_ram[2][8] top.uc_tb.utt.ram0.conteudo_ram[2][7] top.uc_tb.utt.ram0.conteudo_ram[2][6] top.uc_tb.utt.ram0.conteudo_ram[2][5] top.uc_tb.utt.ram0.conteudo_ram[2][4] top.uc_tb.utt.ram0.conteudo_ram[2][3] top.uc_tb.utt.ram0.conteudo_ram[2][2] top.uc_tb.utt.ram0.conteudo_ram[2][1] top.uc_tb.utt.ram0.conteudo_ram[2][0]
 [pattern_trace] 1
 [pattern_trace] 0
