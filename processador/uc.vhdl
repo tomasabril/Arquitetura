@@ -166,8 +166,7 @@ architecture a_uc of uc is
 --0001 soma entre registradores, resultado fica no primeiro
 --0010 subtracao entre registradores, rersultado fica no primeiro
 --0011 move de registrador para registrador    endereçamento = 00
---move constante para registrador 
---0100 comparacao
+--0100 comparacao entre registradores
 
 --formato 2
 --0101 carga de constante
