@@ -4,6 +4,41 @@ cmp	compara dois registradores
 jl	jump if less
 jeq	jump if equals zero
 
+--lista de opcodes:
+
+
+--formato 1
+--0000 nop
+--0001 soma entre registradores, resultado fica no primeiro
+--0010 subtracao entre registradores, rersultado fica no primeiro
+
+--0011 move de registrador para registrador    endereçamento = 00
+
+--0100 comparacao entre registradores
+
+--1101 LW carrega para um registrador o valor de um endereco de outro registrador
+
+--1111 SW salva na ram a partir de um endereco de u registrador
+
+
+--formato 2
+--0101 carga de constante
+
+--0110 soma constante ao registrador
+
+--0111 Subtrai cosntante do registrador
+
+--1110 Comparação com constante
+
+
+--formato 3
+
+--1010 Jump incondicional	--pula para endereco absoluto
+
+--1011 Jump se menor		--pula para endereco relativo ao atual
+
+--1100 Jump caso igual		--pula para endereco relativo ao atual
+
 
 ----------programa:
 
@@ -42,7 +77,7 @@ jeq	jump if equals zero
 
 	//funcoes separadas:
 	remove:
-		SW 0,R6;
+		SW R0,R6;
 		JMP end_a;
 	
 	fim:

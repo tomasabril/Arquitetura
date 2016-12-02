@@ -365,7 +365,8 @@ architecture a_uc of uc is
 
 
 	sel_writereg <=
-		instrucao(8 downto 5) when (opcode = "0001" or opcode = "0010")
+		--
+		instrucao(12 downto 9) when (opcode = "0001" or opcode = "0010")
 			and (estado = "10" or estado = "01") else
 		instrucao(12 downto 9) when opcode = "0011"
 			and (estado = "10" or estado = "01") else

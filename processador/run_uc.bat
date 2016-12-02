@@ -19,6 +19,6 @@ ghdl -a uc.vhdl
 ghdl -e uc
 ghdl -a uc_tb.vhdl
 ghdl -e uc_tb
-ghdl -r uc_tb --stop-time=40000ns --wave=uc_tb.ghw
+ghdl -r uc_tb --stop-time=10000000ns --wave=uc_tb.ghw
 gtkwave uc_tb.ghw 
 pause
