@@ -6,7 +6,6 @@ jeq	jump if equals zero
 
 --lista de opcodes:
 
-
 --formato 1
 --0000 nop
 --0001 soma entre registradores, resultado fica no primeiro
@@ -61,15 +60,17 @@ jeq	jump if equals zero
 		LW R5,R3;
 		CMP R5,R0;
 		JEQ loop1;
-	ADD R4,R5;
+	MOV R4,R5;
 	loop2:
 		ADD R4,1;
 		MOV R6,R4;
 		loop3:
-			SUB R4,R5;
-			CMP R5,R4;
+			SUB R6,R5;
+			CMP R5,R6;
 			JL loop3;
 		JEQ remove;
+		CMP R4, R7
+		JL loop2
 	end_a:
 		CMP R5,R7;
 		JL loop1;

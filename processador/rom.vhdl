@@ -8,6 +8,7 @@ use ieee.numeric_std.all;
 --2º : O R4  não mantinha o valor pois era subtraido no teste, o mesmo valor modificado era usado pra pegar o
 -- o próximo a ser textado, foi usado o R6 para testes e R4 manteve o valor, modifiuqei as instruções dependentes 
 -- de R4 relaxa
+--3° Linha 16, tava ADD em vez de MOV
 
 entity rom is
 	port(
@@ -26,7 +27,7 @@ architecture a_rom of rom is
 			2  => "01010100000000000",	--COC R4, 0
 			3  => "01010101000000000",	--COC R5, 0
 			4  => "01010110000000000",	--COC R6, 0
-			5  => "01010111000001000",	--COC R7, -->8
+			5  => "01010111000100001",	--COC R7, 32
 			
 			-- Loop 0: Coloca os numeros na memoria
 			6  => "11110010001100000", --SW R2, @R3
@@ -41,7 +42,7 @@ architecture a_rom of rom is
 			13 => "11010101001100000", --LW R5, R3	 Pega valor do próximo/primeiro primo da sequencia
 			14 => "01000101000000000",  --CMP R5,R0
 			15 => "11000000000000011", --JEQ loop 1
-			16 => "00010100010100000", --ADD R4,R5 
+			16 => "00110100010100000", --MOV R4,R5 
 			
 			-- Loop 2: Vai percorrendo  a sequencia comparando com o primeiro até o limite da lista
 			17 => "01100100000000001", -- ADDC R4, 1	incrementa os numeros a serem testados em 1
